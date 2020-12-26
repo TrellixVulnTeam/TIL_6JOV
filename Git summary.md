@@ -86,8 +86,12 @@ git remote -v
 | Git commit     |                                                              |
 | :q!            | 저장하지 않고 강제 종료한다.                                 |
 | :wq            | 저장하고 나간다.                                             |
-|                |                                                              |
-|                |                                                              |
+| Git remote add            |                                                              |
+| Git remote remove
+| Git remote -v
+| Git branch
+| Git checkout
+|               |                                                              |
 
 
 
