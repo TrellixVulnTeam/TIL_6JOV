@@ -250,24 +250,24 @@
 # per=30
 # print("I eat %s eggs. so i was sick for %d days. %d%%" % (x,d, per))print
 
-# 1
+1
 # letters = 'python'
 # print(letters[0],letters[2])
 #
-# 2
+2
 # cn ="24가 2210"
 # print(cn[4:])
-# 3
+3
 # s="파이썬파이썬파이썬"
 # print(s[0], s[3], s[-3])
-# 4
+4
 # num_str = "720"
 # print(int(num_str))
-# 5
+5
 # data = "15.79"
 # print(float(data))
 
-# 6
+6
 # price=48584
 # month=36
 # total=price*month
