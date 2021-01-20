@@ -2,4 +2,4 @@
 
 - python practice
 - web scraping
-- HTML, CSS practe
+- HTML, CSS practice
