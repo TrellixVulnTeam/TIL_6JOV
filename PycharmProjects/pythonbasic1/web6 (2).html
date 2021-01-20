@@ -1,0 +1,203 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+&lt;!&ndash;테이블태그:표, tr태그, td태그와 함께 사용&ndash;&gt;
+화면 구성할 때 테이블태그 < div태그(css) 많이 사용됨
+
+<table>
+	<tr>
+		<td>섹션1</td>
+		<td>섹션2</td>
+	</tr>
+	<tr>
+		<td>섹션3</td>
+		<td>섹션4</td>
+	</tr>
+	<tr>
+		<td>섹션4</td>
+		<td>섹션5</td>
+	</tr>
+</table>
+
+thead태그:표의 제목 영역
+th태그:제목 셀
+
+<table>
+	<thead>
+		<tr>
+			<th>학교</th>
+			<th>창립년도</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>서울대학교</td>
+			<td>1946</td>
+		</tr>
+		<tr>
+			<td>고려대학교</td>
+			<td>1905</td>
+		</tr>
+		<tr>
+			<td>연세대학교</td>
+			<td>1885</td>
+		</tr>
+	</tbody>
+</table>
+
+<style>
+    table{
+        border:1px solid #ff0000;
+        border-collapse:collapse;
+        }
+        th,td{
+        border:1px solid #0000ff;
+        }
+</style>
+&lt;!&ndash;
+색상값 범위: 0~F까지(16진수)
+000000:검정,  FFFFFF:흰색
+#ff0000
+  R G B
+&ndash;&gt;
+
+
+<table>
+	<tr>
+		<td>c1</td>
+		<td>c2</td>
+	</tr>
+	<tr>
+		<td>c3</td>
+		<td>c4</td>
+	</tr>
+
+</table>
+
+</body>
+</html>-->
+
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>초간단 테이블</title>
+</head>
+<body>
+<!--픽셀 단위로 크기 설정-->
+    <table border="2" bordercolor="blue" width="600" height="300">
+    <table border="2" bordercolor="blue" width="100%" height="100%">
+
+
+	<th>테이블</th>
+	<th>만들기</th>
+	<tr align="center"><!-- 첫번째 줄 시작 -->
+<!--	    <td colspan="2">합쳐진 칸</td>-->
+	    <td>첫번째 칸</td>
+	    <td bgcolor="red">두번째 칸</td>
+	</tr><!-- 첫번째 줄 끝 -->
+	<tr bgcolor="skyblue"><!-- 두번째 줄 시작 -->
+	    <td>첫번째 칸</td>
+	    <td>두번째 칸</td>
+	</tr><!-- 두번째 줄 끝 -->
+    </table>
+</body>
+</html>
+
+
+div태그 : division약자, 레이아웃설계 , 기능없음,
+CSS와 연동하여 사용
+
+<div>content1</div>
+
+<div style="background-color:yellow">구역1</div>
+<div style="width:100px; height:100px; background-color:#CF0">구역2</div>
+<div style="background-color:blue">구역3</div>
+<div style="background-color:red">구역4</div>
+<!--span태그:기능없음, css와 연동하여 사용-->
+<!--div는 줄바꿈, span은 줄바꿈을 하지 않음-->
+
+<span style="background-color:yellow">구역1</span>
+<span style="background-color:red">구역2</span>
+<span style="background-color:blue">구역3</span>
+<span style="background-color:yellow">구역4</span>
+
+<!--<ul or ol>-->
+<!--<li></li>-->
+<!--</ul or /ol>-->
+
+<!--<ol>-->
+<!--	<li>목록1</li>-->
+<!--	<li>목록2</li>-->
+<!--</ol>-->
+
+
+<!--<ul>-->
+<!--	<li>목록1</li>-->
+<!--	<li>목록2</li>-->
+<!--    <ol>-->
+<!--        <li>목록2-1</li>-->
+<!--        <li>목록2-2</li>-->
+<!--    </ol>-->
+<!--</ul>-->
+
+<html>
+<head>
+    <title>제목</title>
+<!--    meta:페이지 정보(페이지 설명, 키워드:노트북,컴퓨터,주변기기, 제작자, 크롤링 정책)를 제공-->
+    <meta charset="utf-8">
+    <meta name="keywords" content="노트북, 컴퓨터, 주변기기">
+    <meta name="description" content="컴퓨터 판매 페이지입니다">
+    <meta name="robots" content="all">
+<!--실행시 화면에 출력되지 않음. 숨어있는 태그
+title,meta, link, style, script 태그 등이 위치-->
+</head>
+<body>
+<!--어제부터 방금까지 공부했던 모든 태그들이 위치-->
+</body>
+</html>
+
+<!--한국어 인코딩 방식 : euc-kr, utf-8
+euc-kr:ascii(1byte)+한글만 확장 사용 => 2byte
+utf-8:보편화된 인코딩-->
+
+<form>
+	<p>
+		<strong>아이디</strong>
+		<input type="text" name="name" value="아이디 입력">
+	</p>
+	<p>
+		<strong>비밀번호</strong>
+		<input type="password" name="password" value="비밀번호 입력">
+	</p>
+	<p>
+		<strong>성별</strong>
+		<input type="radio" name="gender" value="M">남자
+		<input type="radio" name="gender" value="F">여자
+	</p>
+	<p>
+		<strong>응시분야</strong>
+		<input type="checkbox" name="part" value="eng">영어
+		<input type="checkbox" name="part" value="math">수학
+	</p>
+
+    <select>
+        <option value="ktx">ktx</option>
+        <option value="새마을">새마을</option>
+        <option value="무궁화">무궁화화</option>
+    </select>
+
+	<p>
+		<input type="submit" value="제출">
+	</p>
+</form>
+
+
+
+
+
+

@@ -1,0 +1,255 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+html<strong>문서</strong>를 <u>작성</u>
+<h1>this is heading</h1>
+<h2>this is heading</h2>
+<h3>this is heading</h3>
+<h4>this is heading</h4>
+<h5>this is heading</h5>
+<h6>this is heading</h6>
+<strong>this is heading</strong>
+&lt;!&ndash;h태그는 6까지만 사용 가능하고 7부터는 디폴트 값으로 반환&ndash;&gt;
+&lt;!&ndash;h태그는 제목으로 인식하지만 strong태그는 참고용으로 인식함&ndash;&gt;
+
+
+</body>
+</html>-->
+
+
+
+
+
+
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<note>
+	<to>Tom</to>  &lt;!&ndash;to태그로 묶인 값:Tom <=> to = Tom&ndash;&gt;
+	<from>Amy</from>
+	<heading>Reminder</heading>
+	<body>Don't forget me this weekend!</body>
+</note>-->
+
+
+
+<!--
+<html>
+	<head>
+		<title>My Homepage</title>
+	</head>
+	<body>
+		Welcome to my homepage!
+	</body>
+</html>
+-->
+
+<!--출력되는 부분은 body태그 안에 있는 부-->
+
+
+
+
+<!--
+html: 비구조화된 문서, 태그 이름이 정해져 있음
+xml: 구조화된 문서, 태그 이름을 사용자가 지정할 수 있음
+-->
+
+<!--
+웹 통신 과정
+1. 사용자가 주소 입력(www.naver.com)
+2. www.naver.com->13.15.230.221(DNS) 주소로 변환
+3. 브라우저는 13.15.230.221에 웹페이지를 요청
+4. 웹서버는 요청을 받고 실행함 ->HTML,CSS,JS 문서 전송
+5. 사용자 웹브라우저는 전달 받은 문서를 해석 -> 화면에 출력
+6. 브라우저에는 네이버 홈페이지가 출력
+
+
+프론트엔드(HTML,CSS,JS)로 만든 페이지
+-->
+
+
+
+<!--태그 안에 태그-->
+<!--<meta charset="UTF-8">-->
+
+<!--<AA>-->
+<!--	<bb>내용</BB>-->
+<!--</AA>-->
+<!--<aa>-->
+<!--	<BB>내용1</BB>-->
+<!--	<cc>내용2</cc>-->
+<!--</aa>-->
+
+
+
+
+
+<!--단독 태그: <br>,<img>,<meta>,<hr>,<input>,<link> -->
+
+<!--    <br/> == <br>  -->
+
+
+
+
+<!--태그 안에 속성을 줄 수 있음 -->
+<!--<html>
+<head>
+	<link type="text/css" href="my_style.css">
+</head>
+<body>
+	<font color="red" face="Dotum">Hello</font>
+	<font color="yellow">World</font>
+</body>
+</html>-->
+
+<!--
+
+모든 태그에는 id,class 속성 부여 가능 => CSS,JS에서 태그를 쉽게 다룰 수 있음
+==>하나의 id당 하나의 태그만 적용 가능
+==>하나의 클래스를 여러 태그에 적용 가능
+
+-->
+
+<!--<div id="my-box1"></div>
+<div id="my-box2" class="boxes"></div>
+<div id="my-box3" class="boxes"></div>
+<div class="boxes"></div>-->
+
+
+<!--style 속성
+: 태그의 스티일 지정. 출력되는 형식을 지정
+-->
+<!--
+
+<div style="width:500px; height:300px; border: 1px solid red">hi</div>
+<div style="height:40px; border: 1px solid green">mybox</div>-->
+
+
+
+
+<!--body태그 안에 들어가는 태그
+-->
+<meta charset="UTF-8">
+<!--
+첫번째줄<br>두번째줄
+-->
+
+
+<!--
+<html>
+	<body>
+		the
+		first
+		line<br>
+		the second line
+	</body>
+</html>-->
+
+
+<!--
+
+<html>
+	<body>
+    <pre>
+		the
+		first
+		line<br>
+		the second line
+    </pre>
+	</body>
+</html>-->
+
+
+<!--<p>태그=>하나의 문단을 만들 때 사용-->
+
+<!--
+<html>
+	<body>
+		<p>first paragraph</p>
+		<p>second paragraph</p>
+		<p>
+			new line<br>
+			third paragraph
+		</p>
+	</body>
+</html>
+-->
+
+
+<!--<b>보다는 <strong>태그 사용 권장-->
+
+<!--css에는 font-weight 값을 bold로 설정-->
+
+<!--<b>안내</b>홈페이지를 닫습니다-->
+
+
+<!--
+<i>이탤릭체</i>입니다
+-->
+<!--
+<h1>html</h1>  &lt;!&ndash;이거는 검색엔진이 제목이라는 걸 인식&ndash;&gt;
+<strong><u>htmk</u></strong>함 &lt;!&ndash;이거는 인식하지 못함&ndash;&gt;-->
+
+<!--<html>
+<body>
+	<h2>웹 교육을 위한 서비스 기획안</h2>
+	<h3>개요</h3>
+	<p>
+		웹 개발은 모바일이 중심이 된 IT시장에서도 여전히 중요한 위치에 있다.
+	</p>
+
+
+	<h3>개발</h3>
+	<p>
+		웹 개발은 주로 클라이언트와 백엔드 둘로 나눈다.
+	</p>
+
+	<h5>클라이언트 언어</h5>
+	<ul>
+		<li>HTML</li>
+		<li>CSS</li>
+		<li>JavaScript</li>
+	</ul>
+
+	<h5>백엔드 언어</h5>
+	<ul>
+		<li>PHP</li>
+		<li>ASP</li>
+		<li>Java</li>
+		<li>Python</li>
+	</ul>
+</body>
+</html>-->
+
+
+<!--a 태그: 하이퍼링크를 설정하는 태그
+속성:
+-href:이동 할 링크
+-target:링크를 여는 방법
+새탭, 현재 화면, iframe:부모페이지...-->
+
+<!--
+현재 페이지가 네이버로 설
+<a href="http://www.naver.com">네이버</a>
+&lt;!&ndash;새로운 페이지 열림&ndash;&gt;
+<a href="http://www.daum.net" target="_blank">다음</a>
+&lt;!&ndash;디폴트 값: 현재 페이지가 구글로...&ndash;&gt;
+<a href="http://www.google.com" target="_self">구글</a>
+-->
+
+
+
+<!--이미지 출력 -->
+
+<img src="구글.png" width="300" height="200">
+
+<img src="구글2.png" width="300" height="200">
+
+<!--구글 이미지를 클릭했을 때 구글웹페이지가 새로운탬에 출력되도록 코드를 완성-->
+
+
+<a href="http://www.google.com" target="_blank">
+<img src="구글.png" width="300" height="200"></a>
