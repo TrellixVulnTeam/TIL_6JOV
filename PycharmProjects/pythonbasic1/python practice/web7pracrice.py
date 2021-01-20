@@ -53,9 +53,3 @@ workman("inandout.txt","11:11:11")
 # 2. 웹페이지 작성
 
 
-
-
-
-
-dlfkjskljfklds
-
