@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--첫번째 방법:test.js파일을 불러오기-->
+<!--<script type="text/javascript" src="test.js"></script>-->
+
+
+       <!--두번쨰 방법:객체.동작(내용);-->
+<!--    <script type="text/javascript">
+        document.write("hello")
+        객체.동작(동작내용)
+    </script>-->
+
+
+
+
+    <!--문법-->
+
+
+    <script type="text/javascript">
+        var a=10;   //변수 a에 10 저장, var는 variable 약자로서 변수를 의미
+        var b='k';
+
+        document.write(a)
+        document.write(b)
+        document.write('\n');
+
+        var c=0.5
+        var d=-3.2;
+        var e=0x1af //16진수(0x어쩌구..)
+        var f=010; //8진수(0으로 시작)
+        document.write(e);
+
+
+        var k='5';
+        document.write(k+2);  //문자+숫자 =>문자+문자로 변환이 일어남=>문자가 결합되어진 결과가 나타남
+
+        document.write(parseInt(k)+2);
+        //parseInt():문자로 된 숫자를 숫자로 변환해주는 함수, '5'->5
+
+
+        document.write(parseInt('hello')); //NaN
+        document.write(Math.sqrt(-2)); //square root(제곱근):9의 제곱근은 3,양수만 계산해서 음수는 None이나옴
+
+        document.write(3/0); //Infinity
+
+
+
+
+/*
+
+       function myfunc(){ //함수 정의
+            return 3;
+            }
+            ret=myfunc();  //함수 호출
+            document.write(ret);
+
+*/
+
+/*
+자바스크립트 자료 유형
+
+Boolean: 참 또는 거짓
+string:문자열
+Numver:숫자형
+Null: 빈 값
+NaN:Not a Number,숫자 아님
+Infinity: 무한대
+
+*/
+
+
+    </script>
+
+
+
+
+</head>
+<body>
+
+<!--
+정적인 페이지: html,css
+동적인 페이지: javacsript(객체 기반 스크립트 언어, 동작을 클라이언트에서 함)
+생성된 객체를 이용하여 동적인 페이지를 기술하는 언어
+
+클래스 =>객체생성(속성 초기화)->객체 동작...
+붕어빵기계->붕어빵(크기:5센티,내용물:팥...)->붕어빵 굽는다..
+자동차공장&ndash;&gt;자동차(색상: 빨강, 배기량:3000,...)->달린다, 멈춘다
+신(조물주,...)->사람(코1개 눈2개...)->먹는다, 잔다..
+날씨->날씨예보객체->오늘(현재)의 날씨(기온)는 맑음(흐림, 눈, 비,...(20,10,-5,,)
+
+사람객체와 자동차객체간 동작(ex.사람이 자동차에 탄다, 사람이 자동차를 운전한다)
+
+자바스크립트 작성법
+
+1)html문서 내에 작성
+2)별도로 파일로 작성->html 문서에 포함
+-->
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

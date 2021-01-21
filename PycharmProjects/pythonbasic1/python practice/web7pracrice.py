@@ -9,21 +9,42 @@
 # 10:34:31 11:20:10
 # 특정시간을 입력(예:11:05:20)으로 주었을 때 그 시간에 총 몇 명이 사무실에 있었는지 알려주는 함수를 작성하시오.
 #
+#
+# def office(n):
+#     cnt = 0
+#     n = n.replace(':', '')
+#     with open('time.txt', 'r') as f:
+#         time = f.readlines()
+#
+#     for t in [j.split() for j in (i.strip() for i in time)]:  #\n제가한 후 공백단위로 구분해 각각 list에 넣어 for문으로..
+#         if int(n) - int(t[0].replace(':', '')) >= 0 and int(t[1].replace(':', '')) - int(n) >= 0:
+#             cnt += 1
+#     return cnt
+#
+#
+# n = input()
+# print('{0}]시에는 {1}명이 사무실에 있었습니다.'.format(n,office(n)))
 
-def office(n):
-    cnt = 0
-    n = n.replace(':', '')
-    with open('time.txt', 'r') as f:
-        time = f.readlines()
-
-    for t in [j.split() for j in (i.strip() for i in time)]:  #\n제가한 후 공백단위로 구분해 각각 list에 넣어 for문으로..
-        if int(n) - int(t[0].replace(':', '')) >= 0 and int(t[1].replace(':', '')) - int(n) >= 0:
-            cnt += 1
-    return cnt
 
 
-n = input()
-print('{0}]시에는 {1}명이 사무실에 있었습니다.'.format(n,office(n)))
+# def office(n):
+#     cnt = 0
+#     n = n.replace(':', '')
+with open('time.txt', 'r') as f:
+    time = f.readlines()
+#
+#     for t in [j.split() for j in (i.strip() for i in time)]:  #\n제가한 후 공백단위로 구분해 각각 list에 넣어 for문으로..
+#         if int(n) - int(t[0].replace(':', '')) >= 0 and int(t[1].replace(':', '')) - int(n) >= 0:
+#             cnt += 1
+#     return cnt
+for i in time:
+    print(i.strip())
+
+#
+#
+# n = input()
+# print('{0}]시에는 {1}명이 사무실에 있었습니다.'.format(n,office(n)))
+
 
 
 
@@ -49,7 +70,7 @@ def workman(worklist,nowtime):
             num+=1
     print(num)
 
-workman("inandout.txt","11:11:11")
+workman("time.txt","11:11:11")
 # 2. 웹페이지 작성
 
 

@@ -160,7 +160,7 @@
 
 # x=imput("
 #input함수로 입력받은 모든 데이터는 '문자'로 간
-
+pritn("2")
 
 # x=int(input("첫 번째 수 입력: "))
 # y=int(input("두 번째 수 입력: "))
