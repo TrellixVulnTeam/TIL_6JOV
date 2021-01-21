@@ -155,3 +155,20 @@ brk("(()))(")  # 비정상적인 괄호 사용입니다
 brk("())(()")  # 비정상적인 괄호 사용입니다
 brk("(()((())()))")  # 정상적인 괄호 사용입니다
 
+def brk(brckString):
+    l = []
+    brckList = list(brckString)
+    for i in range(len(brckString)):
+        if brckString[i] == "(":
+            l.append(brckString[i])
+            brckList.remove(brckString[i])
+        elif brckString[i] == ")":
+            if len(l) > 0:
+                l.pop()
+                brckList.remove(brckString[i])
+            else:
+                break
+    if len(l) == 0 and len(brckList) == 0:
+        print("정상적인 괄호 사용입니다")
+    else:
+        print("비정상적인 괄호 사용입니다")
