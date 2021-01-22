@@ -65,6 +65,20 @@ triangle_idf(n)
 #
 
 
+def bri(st):
+    li=[]
+    brilist=list(st)
+    for i in range(len(st)):
+        if i=="(":
+            li.append(i)
+
+        if i==")":
+            li.pop()
+
+
+
+
+
 # 8
 # (((())))
 def parenthesis(data):
@@ -86,6 +100,7 @@ def parenthesis(data):
 
 data = input()
 parenthesis(data)
+
 
 
 
@@ -172,3 +187,28 @@ def brk(brckString):
         print("정상적인 괄호 사용입니다")
     else:
         print("비정상적인 괄호 사용입니다")
+
+
+
+
+
+
+
+
+
+def bracket(text):
+
+    temp=[]
+    for i in text:
+#print(i)
+        if i=='(':
+            temp.append('(')
+        else:
+            if len(temp)==0:
+                return("비정상")
+            elif(len(temp)>0):
+                temp.pop()
+                if len(temp)==0:
+                    return("정상")
+                else:
+                    return("비정상")

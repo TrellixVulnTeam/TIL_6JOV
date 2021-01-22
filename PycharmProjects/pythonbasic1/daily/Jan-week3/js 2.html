@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+ /*
+     배열:크기와 타입이 동일한 기억장소를 여러 개 나열한 것, 값을 여러 개 저장하는 장소
+     변수:값을 1개를 저장하는 장소
+   */
+   var n=['kim', 'lee', 100, 'park'];
+   alert(n[0]);
+
+
+function f(){
+    return ['aaa','bbb'];
+}
+var m=f()
+document.write(m[0]);
+//atom, editplus,...
+//배열을 선언하는 다양한 방법
+//파이썬의 리스트와 비슷
+var myarr1=[];
+var odd=[1,3,5,7];
+var even=new Array(2,4,6,8);  //even=[2,4,6,8]
+var mixarr=['a',1,3,new Date(), "today"];
+document.write(odd[2]);
+//c, java언어:배열(동일한 자료형의 데이터만 저장)
+
+
+
+
+/*
+    var myf=function (a1,a2){
+    document.write(a1+a2);
+    }
+    myf(10,20);
+*/
+
+
+
+
+
+    /*
+    function myf(a1,a2){
+    return a1+a2;
+    }
+    alert(myf(10,20)); //a(b(c(d()))) 다중 중첩은 지양하자!, 복잡한 함수 호출은 피하자
+    */
+
+    //res=d();
+    //res2=c(res);
+    //...b(res2)
+
+    /*
+    function f1(){
+    return "test"; //test를 리턴하면서 f1함수는 종료됨
+    return "guest"; //출력 안함
+    }
+    function f2(){
+    return "test2";
+    }
+
+    alert(f1());  // alert("test");
+    alert(f2());
+*/
+
+/*
+    function numbering(){
+    for(var j=0;j<5;j++){
+    i=0;
+    while(i<10){
+    document.write(i);
+    //i+=1;
+    //i++;
+    i=i+1;
+    }
+    document.write("<br>")
+        }
+        }
+
+numbering();
+*/
+
+퀴즈
+0123456789
+0123456789
+0123456789
+0123456789
+0123456789
+
+    /*
+    function 함수이름(인수들){
+    코드1;
+    if(조건)return;
+    코드2;
+    코드3;
+    return 반환값
+    }
+    */
+
+/*
+    for(var i=0;i<10;i++){
+        for(var j=0;j<10;j++){
+            document.write("<font color='blue'>"+String(i)+String(j)+"</font>"+"<p>");
+}
+}
+*/
+
+//퀴즈:1~100까지 수 중에서 3의 배수만 출력
+/*
+for(var i=1; i<100; i++){
+        if(i%3==0)
+            document.write(i+'<br/>');
+    }
+    */
+    /*
+    for(var i=0;i<10;i++){
+        if(i==5){
+            //break;
+            continue;
+        }
+        document.write(i+"무한 코딩<br/>");
+    }*/
+
+/*      var i=0;
+        while(i<10){
+        document.write("무한 코딩<br/>");
+        i++; //i=i+1과 같음. i+=1 가능
+        }
+*/
+    </script>
+
+</head>
+<body>
+
+<font color="blue">파랑색</font>
+
+</body>
+</html>
