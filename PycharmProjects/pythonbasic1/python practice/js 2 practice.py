@@ -130,18 +130,69 @@ print("현재 당첨번호는 {}입니다".format(list(a)[0:6]))
 
 b=int(input("로또를 몇 개 뽑으시겠습니까?"))
 n=0
-while n<b:
+while 1:
     s=set()
     while len(s)<7:
         num=random.randint(1,45)
         s.add(num)
 
-    print("구매하신 추첨번호는{}입니다".format(list(map(str,s)[0:6])))
 
-    if sorted(list(a))==sorted(list(s)):
-        print("1등: 6개일치(10억원)")
-    else:
-        if 
+
+
+    print("구매하신 추첨번호는{}입니다".format(list(s)[0:6]))
+    cnt=0
+    for i in s:
+        if i in a:
+            cnt+=1
+
+    if cnt==6:
+        print("1 등 : 6개 일치(10억원)")
+    elif cnt==5:
+        print("2 등 : 5개 일치(200만원)")
+    elif cnt==4:
+        print("3 등 : 4개 일치(5만원)")
+    elif cnt==3:
+        print("4 등 : 3개 일치(5천원)")
+
+
+    n+=1
+    if n==b:
+        break
+
+
+#
+
+# import random
+# a=set()
+# while len(a)<7:
+#     num=random.randint(1,45)
+#     a.add(num)
+# print("현재 당첨번호는 {}입니다".format(list(a)[0:6]))
+#
+#
+# b=int(input("로또를 몇 개 뽑으시겠습니까?"))
+#
+# for i in range(b):
+#     s=set()
+#     while len(s)<7:
+#         num=random.randint(1,45)
+#         s.add(num)
+#
+#     print("구매하신 추첨번호는{}입니다".format(list(s)[0:6]))
+#     cnt=0
+#     for i in s:
+#         if i in a:
+#             cnt+=1
+#
+#     if cnt==6:
+#         print("1 등 : 6개 일치(10억원)")
+#     elif cnt==5:
+#         print("2 등 : 5개 일치(200만원)")
+#     elif cnt==4:
+#         print("3 등 : 4개 일치(5만원)")
+#     elif cnt==3:
+#         print("4 등 : 3개 일치(5천원)")
+
 
 
 
@@ -186,31 +237,7 @@ while n<b:
 
 
 
-# 4.최대/최소(자바스크립트)
-# [52, 273, 103, 32, 57, 103, 31, 2]와 같은 숫자 배열이 주어질 때, 배열 내부에서 최대값과 최소값을 찾는 코드를 작성하시오.
-#
-#
-# 5.구구단(자바스크립트)
-# 1)while 사용
-# 2)for  사용
-#
-#
-# 6.두 개의 주사위를 던졌을 때, 눈의 합이 6이 되는 모든 경우의 수를 출력하시오.(자바스크립트)
-#
-#
-#
-# 7.다이아몬드 출력하기(자바스크립트)
-#
-#     *
-#    ***
-#   *****
-#  *******
-# *********
-#  *******
-#   *****
-#    ***
-#     *
-#
+
 #
 #
 #
