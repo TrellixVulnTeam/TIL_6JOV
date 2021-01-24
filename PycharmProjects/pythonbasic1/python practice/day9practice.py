@@ -123,20 +123,20 @@ new="""
 #
 #
 
-
 #
-import re
-dic = {}
-words = re.compile('[가-힣][가-힣]+')
-result = words.findall(new)
-
-for i in result:
-    dic[i] = result.count(i)
-
-
-for key, value in dic.items():
-    if value == max(dic.values()):
-        print('{0} 단어가 {1}번 나왔습니다.'.format(key,value))
+# #
+# import re
+# dic = {}
+# words = re.compile('[가-힣][가-힣]+')
+# result = words.findall(new)
+#
+# for i in result:
+#     dic[i] = result.count(i)
+#
+#
+# for key, value in dic.items():
+#     if value == max(dic.values()):
+#         print('{0} 단어가 {1}번 나왔습니다.'.format(key,value))
 
 
 
@@ -183,13 +183,13 @@ for key, value in dic.items():
 # 5)가장 많이 등장한 글자는 무엇이며, 총 몇 번 등장했나요?
 # #
 # #
-# import re
-# #
-# dic = {}
-# list1 = []
-# words = re.compile('[가-힣]+')
-# result = words.findall(new)
+import re
 #
+dic = {}
+list1 = []
+words = re.compile('[가-힣]+')
+result = words.findall(new)
+
 # for i in result:
 #     for j in i:
 #         list1.append(j)
