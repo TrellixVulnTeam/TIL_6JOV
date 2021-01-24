@@ -46,7 +46,7 @@ for i in 리스트:
 #
 my_list = ["가", "나", "다", "라"]
 for i in range(0,len(my_list)-1):
-    print(my_list[i],my_list[1+1])
+    print(my_list[i],my_list[i+1])
 
 
 # 5. 반복문과 range 함수를 사용해서 my_list를 아래와 같이 출력하라.
@@ -158,8 +158,8 @@ print(myStr.count('8'))
 
 def count_eight():
     cnt=0
-    for i in range(1,10001):
-        for j in range(len(str(i))):
+    for i in range(1,10001):  #1,2,3,4,5,6,7,8,9,10,11
+        for j in range(len(str(i))): #1,2,3,4,5,6,7,8,9,'1,0'
             if str(i)[j]=='8':
                 cnt+=1
     print(cnt)

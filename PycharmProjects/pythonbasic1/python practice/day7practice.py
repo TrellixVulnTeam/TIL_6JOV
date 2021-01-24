@@ -33,7 +33,7 @@ def find_shortest(number_list):
 
 
 #
-#
+## s = [1,3,4,8,13,17,20]
 #
 # myList=[]
 # myList2=[]
@@ -62,7 +62,7 @@ def find_shortest(number_list):
 #  강사님 풀이
 # w=input("단어 입력: ")
 # ispalindrome=True
-# w=w.replace(" "."")
+# w=w.replace(" ","")
 # for i in range(len(w)//2):
 #     if w[i] != w[-1-i]: #왼쪽문자와 오른쪽 문자가 다르경우
 #         ispalindrome=False
