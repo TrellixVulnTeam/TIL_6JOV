@@ -52,6 +52,27 @@ import re
 
 
 
+# 승혀니 풀이
+import random
+
+def rockscissorspaper():
+    while(1):
+        n = input().strip()
+        if n in ["가위", "바위", "보"]:
+            break
+        else:
+            print("잘못 입력하셨습니다. 가위/바위/보 중에 입력해주세요.")
+    data = ["가위", "바위", "보"]
+    computer = random.choice(data)
+    if (n=="바위" and computer=="가위") or (n=="가위" and computer=="보") or (n=="보" and computer=="바위"):
+        print(f"컴퓨터는 {computer}, 컴퓨터({computer})가 졌습니다")
+    elif n==computer:
+        print(f"컴퓨터는 {computer}, 컴퓨터와 비겼습니다")
+    else:
+        print(f"컴퓨터는 {computer}, 컴퓨터({computer})가 이겼습니다")
+
+rockscissorspaper()
+
 
 
 
@@ -160,7 +181,41 @@ while 1:
         break
 
 
-#
+#승혀니 풀이
+
+import random
+
+def lotto():
+    for i in range(1, 11):
+        num = [i for i in range(1,46)]
+        lotto = random.sample(num,6)
+        prize = {'1등': '10억', '2등': '2백만원', '3등': '5만원', '4등': '5천원'}
+
+        n = int(input("로또를 몇개 구매하시겠습니까?(취소:0) : "))
+        print(f"# {i}회차")
+        if n == 0:
+            break
+        print(f"현재 당첨번호는 {lotto} 입니다.")
+        for i in range(n):
+            randlotto = random.sample(num,6)
+            cnt = 0
+            for i in randlotto:
+                if i in lotto:
+                    cnt += 1
+
+            print(f"구매하신 추첨번호는 {randlotto} ", end="")
+            if cnt == 6:
+                print(f"1등 입니다. 당첨금은 {prize['1등']} 입니다.", end="")
+            elif cnt == 5:
+                print(f"2등 입니다. 당첨금은 {prize['2등']} 입니다.", end="")
+            elif cnt == 4:
+                print(f"3등 입니다. 당첨금은 {prize['3등']} 입니다.", end="")
+            elif cnt == 3:
+                print(f"4등 입니다. 당첨금은 {prize['4등']} 입니다.", end="")
+            print()
+        print()
+
+lotto()
 
 # import random
 # a=set()

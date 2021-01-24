@@ -13,6 +13,8 @@ li=[52, 273, 103, 32, 57, 103, 31, 2]
 */
 
 
+//최대값
+
 /*
     function maximum(li){
     max=0;
@@ -26,7 +28,7 @@ li=[52, 273, 103, 32, 57, 103, 31, 2]
 
 
 
-
+//최소값
 
     function minimum(li){
     min=li[0];
@@ -52,17 +54,29 @@ document.write("최대값은:"+maximum(li)+"<br>최소값은:"+minimum(li));
 1)while 사용
 2)for  사용
 */
+//1)
 
 
+var i =2;
+while(i<10){
+    var j=1;
+    while(j<10){
+    document.write(i+"*"+j+"="+i*j+"<br>")
+    j++;
+    }
+    i++
+    document.write("<br>");
+    }
 
-
+/*
+//2)
 for(i=2;i<10;i++){
     for(j=1;j<10;j++){
     document.write(i+"*"+j+"="+i*j+"<br>");
 }
 document.write("<br>")
 }
-
+*/
 
 
 
@@ -92,12 +106,121 @@ for(i=1;i<7;i++){
     *
 */
 
-var star='';
-var maxStar=9;
-var space=0;
-for(var i=0;i<max
+
+for (var i=0;i<=5;i++){
+    for(var j=5;j>i;j--){
+    document.write("&nbsp");
+    }
+    for(var k=0;k<=i*2;k++){
+    document.write("*");
+    }
+    document.write("<br>");
+}
+
+for (var i=4;i>=0;i--){
+    for (var j=i;j<=4;j++){
+    document.write("&nbsp");
+    }
+    for(var k=0;k<=i*2;k++){
+    document.write("*");
+    }
+    document.write("<br>");
+}
 
 
+
+
+
+
+//다른분꺼
+
+/*
+
+for(var i=1; i<10; i+=2){
+        var b = (9-i)/2
+        for(var k=0; k<b; k++){
+            document.write("&nbsp");
+            }
+        for(var j=0; j<i; j++){
+            document.write("*");
+            }
+        document.write("<br>");
+        }
+
+    for(var i=7; i>0; i-=2){
+        var b = (9-i)/2
+        for(var k=0; k<b; k++){
+            document.write("&nbsp");
+            }
+        for(var j=0; j<i; j++){
+            document.write("*");
+            }
+        document.write("<br>");
+        }
+*/
+
+//다른분꺼
+
+/*
+for(var i=1;i<11;i++){
+        for(var k=1; k<(11-i)/2;k++){
+        document.write('&nbsp');
+        }
+        for (var j=1;j<i+1;j++){
+            document.write("*");
+            }
+        for(var k=1; k<(11-i)/2;k++){
+        document.write('&nbsp');
+        }
+         document.write("<br/>")
+         i++;
+       }
+
+        for(var i=1;i<8;i++){
+
+        for(var k=1;k<=(i+1)/2;k++){
+        document.write('&nbsp');
+        }
+        for (var j=1;j<9-i;j++){
+            document.write("*");
+            }
+         document.write("<br/>")
+         i++;
+       }
+
+
+
+
+
+
+
+
+
+
+
+       for(var i=1; i<10; i+=2){
+        var b = (9-i)/2
+        for(var k=0; k<b; k++){
+            document.write("&nbsp");
+            }
+        for(var j=0; j<i; j++){
+            document.write("*");
+            }
+        document.write("<br>");
+        }
+
+    for(var i=7; i>0; i-=2){
+        var b = (9-i)/2
+        for(var k=0; k<b; k++){
+            document.write("&nbsp");
+            }
+        for(var j=0; j<i; j++){
+            document.write("*");
+            }
+        document.write("<br>");
+        }
+
+*/
 </script>
 </head>
 <body>
