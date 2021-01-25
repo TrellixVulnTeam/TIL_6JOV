@@ -1,0 +1,243 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<h1>Javascript</h1>
+<script>
+//document.write("hello world");
+//document.write(2+3);  //자바스크립트는 동
+
+//document.write(2+3+"<br/>");
+//alert("hello world".length);
+//alert("hello world".toUpperCase());  //cast a to b
+//alert("hello world".toLowerCase());  //cast a to b
+//alert("hello world".indexOf('o'));
+//alert("hello world".indexOf('O'));
+
+
+
+document.write("      hi     ".trim());
+
+document.write("&nbsp&nbsp&nbsp hi &nbsp&nbsp&nbsp hello");
+
+
+
+//alert("hello world".indexOf('hi'));
+//alert("hello world".indexOf('hello')); //단어로 검색하면 단어의 시작위치가 나옴
+//alert("hello world".indexOf('world'));
+
+
+
+
+//"hello world" 문자열에서()의 인덱스가 얼마입니까?
+
+
+
+//장고(파이썬 웹사이트 프레임웍)
+//length(괄호가 없는것들)어트리뷰트==프로퍼티==속성
+//alert(),...:함수==메서드
+
+
+</script>
+2+3적 //html은 정적
+
+//버튼을 클릭했을 때 메세지가 출력
+//~했을 떄에 해당되는 자바스크립트 이벤트를 지정하는 속성명은 접두어가 on으로 시작되는 함수를 정의하여 이벤트 처리
+//속성명= on+이벤트명이 오게 됨
+//ex) onclick=클릭했을 때
+<br>
+<input type="button" value="Click me" onclick="alert('why click me?')" >
+<br>
+ID:<input type="text" onchange="alert('changed')"/>
+<br>
+PW:<input type="text" onkeyup="alert('key down')" />
+
+
+
+
+</body>
+</html>-->
+
+
+
+<html>
+    <head>
+        <title>WEB1 - JavaScript</title>
+        <meta charset="utf-8">
+        <style>
+            .js{
+            font-weight:bold;
+            color:red;
+            }
+            #first{
+            color:green;
+            }
+            span{
+            color:blue;
+            }
+
+
+        </style>
+    </head>
+    <body>
+<!--    <span>myscript</span>
+    &lt;!&ndash;<span id="first">myscript</span>&ndash;&gt;  &lt;!&ndash;span태그보다 id가 앞서서 출력됨&ndash;&gt;
+    <span class="js">my script</span>
+    <span class="js" id="first"></span>
+
+        <h1><a href="index.html">WEB</a></h1>
+    <h2 style="background-color:coral; color:skyblue">Javascript</h2>
+    <p class="js">python</p>-->
+
+
+<!--
+    <input type="button" value="black" onclick="
+    document.querySelector('body').style.backgroundColor='black';
+    document.querySelector('body').style.color='white';
+">
+    &lt;!&ndash;<input type="button" value="white">&ndash;&gt;
+    <input type="button" value="white" onclick="
+    document.querySelector('body').style.backgroundColor='white';
+    document.querySelector('body').style.color='black';
+">-->
+<!--
+<h1>1===1</h1>
+<h1>2>1</h1>
+<h1>2&gt;1</h1>
+<h1>2&lt;1</h1>
+
+
+<script>
+
+document.write(1==1);
+document.write(1===1);
+document.write(1==2);
+document.write(1===2);
+
+document.write(2>1);
+
+</script>
+
+
+<h1>javascript</h1>
+    <p>java script html css</p>-->
+
+<!--
+ <input type="button" value="black" onclick="
+    document.querySelector('body').style.backgroundColor='black';
+    document.querySelector('body').style.color='white';
+">
+
+    <input type="button" value="white" onclick="
+    document.querySelector('body').style.backgroundColor='white';
+    document.querySelector('body').style.color='black';
+">
+
+black버튼을 클릭했을 때, myblack이라는 아이디를 갖고 있는 대상의 value가 black과 같다면
+
+<input id="myblack" type="button" value="black" onclick="
+if(document.querySelector('#myblack').value=='black'){
+document.querySelector('#myblack').value='white';
+document.querySelector('body').style.backgroundColor='black';
+    document.querySelector('body').style.color='white';
+
+} else{
+document.querySelector('#myblack').value='black';
+document.querySelector('body').style.backgroundColor='white';
+    document.querySelector('body').style.color='black';
+
+}
+
+">-->
+<!--
+배경이 black상태에서 toggle을 누르면 그대로,
+배경이 white인 상태에서 toggle을 누르면 반전-->
+
+<!--id가 없을 때는 버튼 안에 text로 식별할 수 있음.this는 이벤트의 주체임(이벤트가 발생된 대상).여기서는 클릭을 한 버튼. target에는 body가 들어가있음-->
+<input type="button" value="black" onclick="
+var target=document.querySelector('body');
+if(this.value=='black'){
+target.style.background='black';
+target.style.color='white';
+this.value='white';
+
+} else{
+target.style.background='white';
+target.style.color='black';
+this.value='black';
+
+}
+">
+
+
+
+<input type="button" value="black" onclick="
+var target=document.querySelector('body');
+if(this.value=='black'){
+target.style.background='black';
+target.style.color='white';
+this.value='white';
+
+} else{
+target.style.background='white';
+target.style.color='black';
+this.value='black';
+
+}
+">
+
+
+<!--if(document.querySelector('#myblack').value=='black'){
+document.querySelector('#myblack').value='white';
+document.querySelector('body').style.backgroundColor='black';
+    document.querySelector('body').style.color='white';
+
+} else{
+document.querySelector('#myblack').value='black';
+document.querySelector('body').style.backgroundColor='white';
+    document.querySelector('body').style.color='black';
+
+}">-->
+
+
+
+
+    <h1>javascript</h1>
+    <p>java script html css</p>
+
+
+    <input type="button" value="white" onclick="
+
+var target=document.querySelector('body');
+if(this.value=='white'){
+target.style.backgroundColor='white';
+target.style.color='black';
+this.value='black';
+
+} else{
+target.style.backgroundColor='black';
+target.style.color='white';
+this.value='white';
+
+}
+
+">
+
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+

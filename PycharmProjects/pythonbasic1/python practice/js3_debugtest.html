@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>\
+
+
+    how = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+for (n in how){
+    n=parseInt(n);
+if (n >= 5){
+n=9-2 * (n-4);
+}
+else {n=2 * n+1;}
+s=(9-n) / 2;
+for (var j=0;j < s;j++){
+document.write("<font color='white'>"+"*"+"</font>");
+}
+for (var i=0;i < n;i++){
+document.write("*");
+}
+for (var k=0;k < s;k++){
+document.write("<font color='white'>"+"*"+"</font>");
+}
+document.write("<br>");
+</head>
+<body>
+
+</body>
+</html>
