@@ -5,23 +5,23 @@
 #
 # 예. -1 1 3 -2 2 ans: -1 -2 1 3 2.
 
-a = [-1,1,3,-2,2]
-print(list(filter(lambda n:n < 0, a)) + list(filter(lambda n:n >= 0, a)))
+# a = [-1,1,3,-2,2]
+# print(list(filter(lambda n:n < 0, a)) + list(filter(lambda n:n >= 0, a)))
 
 
 #다른 풀이
-
-def sort(*num):
-    negative,positive=[],[]
-    for i in num:
-        if i<0:
-            negative.append(a)
-        elif i>0:
-            positive.append(a)
-    return negative+positive
-
-a=sort(1,-1,2,3,4,-2)
-print(a)
+#
+# def sort(*num):
+#     negative,positive=[],[]
+#     for i in num:
+#         if i<0:
+#             negative.append(a)
+#         elif i>0:
+#             positive.append(a)
+#     return negative+positive
+#
+# a=sort(1,-1,2,3,4,-2)
+# print(a)
 
 
 
@@ -43,12 +43,12 @@ print(a)
 # 1	10	1
 # 10	10	1
 # 11	10	2
-
+#12    10   2
 
 def page(m,n):
     if m > n:
         if m % n == 0:
-            return m//n
+            return divmod(m,n)[0]
         else:
             return int((m-m%n) / n + 1)
     elif m == 0:
@@ -56,10 +56,19 @@ def page(m,n):
     else:
         return 1
 
-print(page(1,3))
+print(page(3,2))
 
 
-
+#다른사람 풀이
+# def numOfPage(m, n):
+#     page = divmod(m, n)
+#     if page[1] > 0:
+#         print("총페이지수 :", page[0]+1)
+#     else:
+#         print("총페이지수 :", page[0])
+#
+# m, n = map(int, input("총건수와 한페이지 당 게시물 수를 입력해주세요 :").split(" "))
+# numOfPage(m, n)
 
 
 # 3. (파이썬)
@@ -90,26 +99,50 @@ print(page(1,3))
 # 입력: 0 똘기 떵이 호치 새초미
 # 출력: 똘기 떵이 호치 새초미
 
-#다르사람 풀이
 
-def rot(li):
-    n=int(li[0])
-    li1=li[1:]
+li=input("입력: ").split(" ")
+num=int(li[0])
+li.pop(0)
+if num<0:
+    for i in range(-num):
+        li.append(li.pop(0))
+else:
+    for i in range(num):
+        li.insert(0,li.pop(len(li)-1))
+print(li)
 
-    if n>0:
-        for i in range(n):
-            rm=li1.pop()
-            li1=list(rm)+li1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#다사람 풀이
+def trunList(s):
+    l = s[1:]
+    standard = int(s[0])
+    if standard > 0:
+        for i in range(standard):
+            a = l.pop()
+            l = [a] + l
     else:
-        for j in range(abs(n)):
-            b=li1[0]
-            del li1[0]
-            li1+=[b]
-    print("".join(li1))
+        for j in range(abs(standard)):
+            b = l[0]
+            del l[0]
+            l += [b]
+    print("출력결과:", " ".join(l))
 
-s=input("회전하는 양과 각 항목의 값을 순서대로 작성해주세요: ").split(" ")
-rot(s)
-
+s = input("회전하는 양과 각 항목의 값을 순서대로 작성해주세요: ").split(" ")
+trunList(s)
 
 
 

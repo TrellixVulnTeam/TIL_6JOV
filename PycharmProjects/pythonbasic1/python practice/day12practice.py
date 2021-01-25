@@ -216,7 +216,22 @@ def largest_num(num_list):
 # #
 # # 출력예제
 # # 26
-# #
+def squareArea():
+    area=set()
+    for i in range(4):
+        sq = list(map(int, input().split()))
+        for x in range(sq[0],sq[2]):
+            for y in range(sq[1],sq[3]):
+                area.add((x,y))
+    print(len(area))
+
+
+squareArea()
+# 1 2 4 4
+# 2 3 5 7
+# 3 1 6 5
+# 7 3 8 6
+
 # #
 # # 3. 현재 페이지에 출력된 질문의 '제목' 부분을 모두 추출하여 출력하시오.
 # # 참고주소)
