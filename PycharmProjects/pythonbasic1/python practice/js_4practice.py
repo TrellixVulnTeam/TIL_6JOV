@@ -25,17 +25,22 @@
 # 중앙값 : 자료를 작은 값에서부터 크기순으로 나열할 때 중앙에 위치한 값
 # ① 자료의 개수가 홀수이면 가운데 위치한 값이 중앙값이다.
 # ② 자료의 개수가 짝수이면 가운데 위치한 두 값의 평균이 중앙값이다.
+#
+# def count_middle(li):
+#         li.sort()
+#         a=int(len(li)/2)
+#
+#         if len(li)%2==0:
+#             result=(li[a]+li[a-1])/2
+#         else:
+#             result=li[a]
+#         return result
 
-def count_middle(li):
-        li.sort()
-        a=int(len(li)/2)
 
-        if len(li)%2==0:
-            result=(li[a]+li[a-1])/2
-        else:
-            result=li[a]
-        return result
-
+#강사님풀이
+import statistics
+test=[100,200,50,90,300,120]
+print(statistics.median(test))
 
 
 
@@ -82,6 +87,12 @@ def OneEditApart(s1,s2):
 print(OneEditApart("cat", "acts"))
 
 
+
+
+
+#cat==dog 문자열 길이 같은 경우
+#cat==cats 문자열 길이 다른 경우(앞이 더 작은)
+#cats==cat 문자열 길(앞이 더 긴)
 
 
 
@@ -186,4 +197,14 @@ def secretMap(n, arr1, arr2):
     return l2
 
 
+
+#강사님풀이
+
+#print(bin(9|30)) #31을 11111==>or연산을 하면 바로 나옴
+def decodeMap(n,arr1,arr2):
+    for i in range(n):
+        temp=bin(arr1[i] | arr2[i])[2:].zfill(5)
+        temp=temp.replace('0'," ")
+        temp=temp.replace("1",'#')
+        print(temp)
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <script>
+
+function checkID(self){
+var id= document.getElementById('myid').value;
+if (id.length>=6 && id.length<=12){
+    alert("아이디 사용 가능");
+}
+else{
+alert("아이디 사용 불가능");
+    }
+}
+
+    </script>
+
+</head>
+<body>
+ <input type="text" id="myid" value="아이디입력">
+ <input type="button" id="chk" value="validation" onclick="
+checkID(this);
+ ">
+</body>
+</html>

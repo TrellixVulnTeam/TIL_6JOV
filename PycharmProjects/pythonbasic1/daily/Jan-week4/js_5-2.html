@@ -1,0 +1,220 @@
+<!--
+
+&lt;!&ndash;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+&lt;!&ndash;객체는 딕셔너리 형태로 표현, 순서가 없음, 중괄호 사용&ndash;&gt;
+
+&lt;!&ndash; 빈 객체
+var coworkers={
+}
+&ndash;&gt;
+
+&lt;!&ndash;객체 생성, 객체명은 coworkers, 속성명(딕셔너리 키) &ndash;&gt;
+<script>
+var workers={
+"programmer":"kim",
+"designer":"lee"
+}
+document.write("개발자명:"+coworkers.programmer+"<br>");
+document.write("디자이너:"+coworkers.designer+"<br>");
+coworkers["data scientist"]="park";
+//coworkers.dataScientist="park";
+//document.write("데이터과학자:"+coworkers.dataScientist+"<br>");
+document.write("데이터과학자:"+coworkers["data scientist"]+"<br>");
+</script>
+
+<h2>객체에 메서드(함수) 정의</h2>
+&lt;!&ndash;//객체명.함수(메서드)명
+//k에는 key가 저장됨&ndash;&gt;
+<script>
+coworkers.showAll=function(){
+    for(var k in this){
+     document.write(k + " : " + this[k]+"<br>");
+    }
+}
+coworkers.showAll();
+</script>
+
+&lt;!&ndash;<script>&ndash;&gt;
+&lt;!&ndash;    var a=['test', 'test2'];&ndash;&gt;
+&lt;!&ndash;    a[0];&ndash;&gt;
+&lt;!&ndash;    a[1];&ndash;&gt;
+&lt;!&ndash;</script>&ndash;&gt;
+
+</body>
+</html>
+&ndash;&gt;
+
+
+<html>
+    <head>
+        <title>WEB1 - JavaScript</title>
+        <meta charset="utf-8">
+        <script>
+            function LinksSetColor(color) {
+                var alist = document.querySelectorAll('a');
+                var i = 0;
+                while(i < alist.length) {
+                    alist[i].style.color = color;
+                    i = i + 1;
+                }
+            }
+            function BodySetColor(color) {
+                document.querySelector('body').style.color = color;
+            }
+            function BodySetBackgroundColor(color) {
+                document.querySelector('body').style.backgroundColor = color;
+            }
+    var Body = {
+        setBackgroundColor:function(color){
+        document.querySelector('body').style.backgroundColor = color;
+        },
+        setColor:function(color){
+        document.querySelector('body').style.color = color;
+        }
+    }
+
+    var Links = {
+                setColor: function(color) {
+                    var alist = document.querySelectorAll('a');
+                    var i = 0;
+                    while(i < alist.length) {
+                        alist[i].style.color = color;
+                        i = i + 1;
+                    }
+                }
+            }
+
+
+function nightDayHandler(self) {
+                var target = document.querySelector('body');
+                if(self.value === 'night') {
+                    Body.setBackgroundColor('black');
+                    Body.setColor('white');
+                    self.value = 'day';
+
+                    Links.setColor('powderblue');
+                } else {
+                    Body.setBackgroundColor('white');
+                    Body.setColor('black');
+                    self.value = 'night';
+
+                    Links.setColor('blue');
+                }
+            }
+        </script>
+    </head>
+
+<body>
+        <h1><a href="index.html">WEB</a></h1>
+
+        <input type="button" value="night" onclick="
+            nightDayHandler(this);
+        ">
+
+        <ol>
+            <li><a href="1.html">HTML</a></li>
+            <li><a href="2.html">CSS</a></li>
+            <li><a href="3.html">JavaScript</a></li>
+        </ol>
+        <h2>JavaScript란 무엇인가?</h2>
+        <p>JavaScript (/ˈdʒɑːvəˌskrɪpt/),[6] often abbreviated as JS, is a high-level, interpreted programming language. It is a language which is also characterized as dynamic, weakly typed, prototype-based and multi-paradigm. Alongside HTML and CSS, JavaScript is one of the three core technologies of the World Wide Web.[7] JavaScript enables interactive web pages and thus is an essential part of web applications. The vast majority of websites use it,[8] and all major web browsers have a dedicated JavaScript engine to execute it.</p>
+
+        <input type="button" value="night" onclick="
+            nightDayHandler(this);
+        ">
+    </body>
+</html>
+-->
+
+
+
+<!--
+<script>
+    var person={
+    name:"kim",
+    hello:function(msg){
+    document.write("say hello"+ msg);
+
+        }
+    }
+    //person.hello();
+    //document.write(person.name);
+    person.hello(" world");
+
+</script>-->
+
+정규식을 표현하는 2가지 방법
+<!--<script>
+    var re=/ab+c/;    //1)정규표현식을 슬래쉬로 감싸는 방법으로 표현
+
+    var re=regExp("ab+c") //2)RegExp 객체 생성 방법으로 표현
+
+
+</script>-->
+<!--정규표현식의 예-->
+
+<!--/Chapter(\d+)\.\d* /-->
+<!--/abc/-->   <!--abc를 포함하고 있어야함-->
+
+<!--/ab*c/-->
+
+
+
+<!--
+
+<script>
+    var myRe=/cdb{3}d*/
+    var myArray=myRe.exec("cdbbddsbz");
+
+    document.write(myArray);
+
+
+</script>-->
+
+
+
+<script>
+document.write(/abc/.exec("this is abc");
+document.write(/abc/.exec("this is abc");
+
+
+document.write(/a\d/.exec("ab");
+
+document.write(/a\d/.exec("a1b");
+
+//특수 문자 앞에 역슬래쉬(\): 특수문자를 단순 문자로 해석하고 싶을 때
+document.write(/a\*/.exec("a*aaaa");
+
+
+
+document.write(/^A/.exec("an E");
+document.write(/^A/.exec("An E");
+
+<!--대괄호를 쓰면 대문자 A가 아니면 매치되게 하는 것 -->
+document.write(/[^A]/.exec("An E");
+
+
+document.write(/t$/.exec("eat");
+document.write(/t$/.exec("eater");
+
+
+
+
+
+
+
+
+document.write(/(zoo) (bar)/.exec("zoo test bar");
+
+document.write(/(zoo) (bar)/.exec("zoo bar test");
+
+cument.write(/(zoo) (bar)/.exec("zoo test bar");
+
+</script>
