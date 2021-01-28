@@ -88,8 +88,10 @@
 
 
 # {FR, RA, AN, NC, CE}, {FR, RE, EN, NC, CH}
+# A = {1, 1, 2, 2, 3}, 다중집합 B = {1, 2, 2, 4, 5}
 
-
+#1,2,3 ///1,2,4,5
+# A ∩ B = {1, 2, 2}, 합집합 A ∪ B = {1, 1, 2, 2, 3, 4, 5}
 #다른 분 풀이
 
 def jaccard_sim(str1, str2):
@@ -141,27 +143,33 @@ jaccard_sim("E=M*C^2", "e=m*c^2")  # 65536
 #
 # #####################
 import re
-p = re.compile('[a-zA-Z0-9가-힣][a-zA-Z0-9가-힣]')
 
-#문자열을 2개씩 묶어서 리스트에 저장하는 함수
+p = re.compile('[a-zA-Z][a-zA-Z]')
+
+
 def multiset(str):
     myList = []
-    for i in range(len(str)-1):
-        myList.append(str[i]+str[i+1])
+    for i in range(len(str) - 1):
+        myList.append(str[i] + str[i + 1])
     return myList
 
-# {FR, RA, AN, NC, CE}, {FR, RE, EN, NC, CH}
 
 def intersection(str1, str2):
     myList2 = []
-    for j in str1:
+    for j in set(str1):
         if j in str2:
-            myList2.append(j)
+            if str1.count(j) > str2.count(j):
+                for k in range(str2.count(j)):
+                    myList2.append(j)
+            else:
+                for k in range(str1.count(j)):
+                    myList2.append(j)
     return myList2
+
 
 def unionsection(str1, str2):
     union = str1 + str2
-    for j in intersection(str1_re, str2_re):
+    for j in intersection(str1, str2):
         union.remove(j)
     return union
 
@@ -169,20 +177,18 @@ def unionsection(str1, str2):
 def jacquard(str1, str2):
     inter = intersection(str1_re, str2_re)
     union = unionsection(str1_re, str2_re)
-    return int(float(len(inter) / len(union))*65536)
+    if len(union) == 0:
+        return 65536
+    else:
+        return int(float(len(inter) / len(union)) * 65536)
 
-str1 = "aa1+aa2".upper()
-str2 = "AAAA12".upper()
+
+str1 = "france".upper()
+str2 = "french".upper()
 str1_re = p.findall(str(multiset(str1)))
 str2_re = p.findall(str(multiset(str2)))
 
-
-# print(str1_re, str2_re)
-# print(unionsection(str1_re, str2_re))
-# print(intersection(str1_re, str2_re))
-
 jacquard(str1_re, str2_re)
-
 
 # 3. 계산기 수정
 # - 숫자1, 2 입력 상자와  라벨을 연결하시오(묵시적)
