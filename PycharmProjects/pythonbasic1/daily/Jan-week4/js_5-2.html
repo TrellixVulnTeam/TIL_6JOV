@@ -1,6 +1,5 @@
-<!--
 
-&lt;!&ndash;
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +16,7 @@ var coworkers={
 
 &lt;!&ndash;객체 생성, 객체명은 coworkers, 속성명(딕셔너리 키) &ndash;&gt;
 <script>
-var workers={
+var coworkers={
 "programmer":"kim",
 "designer":"lee"
 }
@@ -49,10 +48,10 @@ coworkers.showAll();
 
 </body>
 </html>
-&ndash;&gt;
+-->
 
 
-<html>
+<!--<html>
     <head>
         <title>WEB1 - JavaScript</title>
         <meta charset="utf-8">
@@ -130,91 +129,66 @@ function nightDayHandler(self) {
             nightDayHandler(this);
         ">
     </body>
-</html>
--->
-
-
+</html>-->
 
 <!--
 <script>
     var person={
-    name:"kim",
-    hello:function(msg){
-    document.write("say hello"+ msg);
-
+        name:"kim",
+        hello:function(msg){
+        document.write("say hello "+msg);
         }
     }
     //person.hello();
     //document.write(person.name);
-    person.hello(" world");
-
-</script>-->
-
-정규식을 표현하는 2가지 방법
-<!--<script>
-    var re=/ab+c/;    //1)정규표현식을 슬래쉬로 감싸는 방법으로 표현
-
-    var re=regExp("ab+c") //2)RegExp 객체 생성 방법으로 표현
+    person.hello("world");
+</script>
+-->
 
 
-</script>-->
+<!--정규식을 표현하는 2가지 방법-->
+<!--<script>-->
+<!--    var re=/ab+c/;  //1)정규표현식을 슬래쉬로 감싸는 방법으로 표현-->
+<!--    var re=RegExp("ab+c"); //2) RegExp객체 생성 방법으로 표현. abc abbc...-->
+
+<!--</script>-->
 <!--정규표현식의 예-->
-
-<!--/Chapter(\d+)\.\d* /-->
-<!--/abc/-->   <!--abc를 포함하고 있어야함-->
-
+<!--/Chapter(\d+)\.\d*/-->
 <!--/ab*c/-->
+<!--cbbabbbbcdebc-->
 
-
-
-<!--
-
-<script>
-    var myRe=/cdb{3}d*/
-    var myArray=myRe.exec("cdbbddsbz");
-
+<!--<script>
+    var myRe=/cdb{3}d*/;
+    var myArray=myRe.exec("cdbbddbsbz");
     document.write(myArray);
 
-
 </script>-->
 
-
-
 <script>
-document.write(/abc/.exec("this is abc");
-document.write(/abc/.exec("this is abc");
+document.write(/abc/.exec("this is abc")+"<br>");
+document.write(/abc/.exec("this is ab c")+"<br>");
 
+document.write(/a\d/.exec("ab") +"<br>");
+document.write(/a\d/.exec("a1b") +"<br>");
 
-document.write(/a\d/.exec("ab");
+//특수문자 앞에 역슬래쉬(\):특수문자를 단순문자로 해석
+document.write(/a\*/.exec("aaaaaaaa") +"<br>");
+document.write(/a\*/.exec("a*aaaaaaa") +"<br>");
 
-document.write(/a\d/.exec("a1b");
+document.write(/^A/.exec("an E") +"<br>");
+document.write(/^A/.exec("An E") +"<br>");
+document.write(/[^0-9]+/.exec("An E") +"<br>");
 
-//특수 문자 앞에 역슬래쉬(\): 특수문자를 단순 문자로 해석하고 싶을 때
-document.write(/a\*/.exec("a*aaaa");
+document.write(/t$/.exec("eater") +"<br>");
 
+document.write(/(zoo)(bar)/.exec("zoo test bar") +"<br>");
 
-
-document.write(/^A/.exec("an E");
-document.write(/^A/.exec("An E");
-
-<!--대괄호를 쓰면 대문자 A가 아니면 매치되게 하는 것 -->
-document.write(/[^A]/.exec("An E");
-
-
-document.write(/t$/.exec("eat");
-document.write(/t$/.exec("eater");
-
+document.write(/(zoo) (bar)/.exec("zoo bar test") +"<br>");
+document.write(/(zoo) (bar)/.exec("zoo test bar") +"<br>");
 
 
 
-
-
-
-
-document.write(/(zoo) (bar)/.exec("zoo test bar");
-
-document.write(/(zoo) (bar)/.exec("zoo bar test");
-
-cument.write(/(zoo) (bar)/.exec("zoo test bar");
 
 </script>
+
+

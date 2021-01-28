@@ -77,8 +77,71 @@ def dart(dartResult):
 
 
 
+#다른분이 푼거
+def dart(text):
+    lis=[]
+    n=''
+    for i in text:
+        if i.isnumeric():  #숫자점수면 저장
+            n +=i
+        elif i=='D':
+            lis.append(int(n)**2)
+            n=''
+        elif i=='T':
+            lis.append(int(n)**3)
+            n=''
+        elif i =='S':
+            lis.append(int(n)**1)
+            n=''
+        elif i=='*':
+            if len(lis) >1: #두번째 게임 이상
+
+                lis[-2] *=2
+
+            lis[-1]*=2 #2번째 점수 --> *이 두개일때 고려
+
+        elif i=='#':
+            lis[-1]*=-1
+
+    return sum(lis)
 
 
+dartResult =input('dart:')
+print(dart(dartResult))
+
+
+
+
+
+#다른 분
+def cashSize(a,b):
+    lower_li=[]
+    for i in b:
+        i=i.lower() #소문자화
+        lower_li.append(i)
+    print(lower_li)
+    cash=[]
+
+    time=0
+
+
+    for d in b:
+        if a==0:
+            time+=5
+
+        elif d not in cash and len(cash)!=a:
+            cash.append(d)
+            time+=5
+
+        elif d not in cash and len(cash)==a:
+            cash.remove(cash[0])
+            cash.append(d)
+            time+=5
+
+        elif d in cash:
+            time+=1
+
+    return time
 
 
 
