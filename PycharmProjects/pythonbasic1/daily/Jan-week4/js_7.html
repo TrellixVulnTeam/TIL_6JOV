@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <style>
+            body{
+                background-color: black;
+                color:white;
+            }
+            #target{
+                width:200px;
+                height:200px;
+                background-color: green;
+                margin:10px;
+            }
+            table{
+                border-collapse: collapse;
+                margin:10px;
+                float: left;
+                width:200px;
+            }
+            td, th{
+                padding:10px;
+                border:1px solid gray;
+            }
+        </style>
+
+
+</head>
+<body>
+<div id="target">
+
+        </div>
+
+<table>
+            <tr>
+                <th>event type</th>
+                <th>info</th>
+            </tr>
+
+           <tr>
+                <td>click</td>
+                <td id="elmclick"></td>
+            </tr>
+            <tr>
+                <td>dblclick</td>
+                <td id="elmdblclick"></td>
+            </tr>
+            <tr>
+                <td>mousedown</td>
+                <td id="elmmousedown"></td>
+            </tr>
+            <tr>
+                <td>mouseup</td>
+                <td id="elmmouseup"></td>
+            </tr>
+            <tr>
+                <td>mousemove</td>
+                <td id="elmmousemove"></td>
+            </tr>
+            <tr>
+                <td>mouseover</td>
+                <td id="elmmouseover"></td>
+            </tr>
+            <tr>
+                <td>mouseout</td>
+                <td id="elmmouseout"></td>
+            </tr>
+            <tr>
+                <td>contextmenu</td>
+                <td id="elmcontextmenu"></td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <th>key</th>
+                <th>info</th>
+            </tr>
+            <tr>
+                <td>event.altKey</td>
+                <td id="elmaltkey"></td>
+            </tr>
+            <tr>
+                <td>event.ctrlKey</td>
+                <td id="elmctrlkey"></td>
+            </tr>
+            <tr>
+                <td>event.shiftKey</td>
+                <td id="elmshiftKey"></td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <th>position</th>
+                <th>info</th>
+            </tr>
+            <tr>
+                <td>event.clientX</td>
+                <td id="elemclientx"></td>
+            </tr>
+            <tr>
+                <td>event.clientY</td>
+                <td id="elemclienty"></td>
+            </tr>
+        </table>
+
+<script>
+
+var t =document.getElementById('target');
+
+//핸들러 함수는 등록된 이벤트가 발생될 때마다 호출됨
+//event변수안에는 이벤트에 대한 모든 정보가 저장됨
+function handler(event){
+//alert("핸들러 함수");
+//alert(event.type);
+
+var info=document.getElementById("elm"+event.type)  //elmmouseup
+
+var time=new Date(); //date객체 생성
+var timestr=time.getMilliseconds();
+//alert(timestr);
+info.innerHTML=timestr;
+
+if(event.altKey){
+document.getElementById("elmaltkey").innerHTML= timestr;
+}
+if(event.shiftKey){
+document.getElementById("elmshiftKey").innerHTML= timestr;
+}
+if(event.ctrlKey){
+document.getElementById("elmctrlkey").innerHTML= timestr;
+}
+
+//document.getElementById("elemclientx").innerHTML= event.clientX;
+//document.getElementById("elemclienty").innerHTML= event.clientY;
+
+document.getElementById("elemclientx").innerHTML= event.offsetX;
+document.getElementById("elemclienty").innerHTML= event.offsetY;
+
+
+}
+t.addEventListener("click",handler);
+t.addEventListener("dblclick",handler);
+t.addEventListener("mousedown",handler);
+t.addEventListener("mouseup",handler);
+t.addEventListener("mouseover",handler);
+t.addEventListener("mousemove",handler);
+t.addEventListener("mouseout",handler);
+t.addEventListener("contextmenu",handler);
+
+
+</script>
+</body>
+</html>
+<!---->녹색박스 -> 이벤트 발생 -> 이벤트 발생된 위치 정보를 출력
+<!--t.addEventListener("click",handler);
+//t가 클릭 이벤트를 인지할 수 있게 리스너를 추가함 ->
+//반응을 하기 위한 handler 함수를 호출
+
+//t : t에게
+//Event:외부의 입력(보여지는것, 전해지는 것...)
+//Listener:입력을 인식할 수 있는 ??것을
+//add:추가해라
+
+//alert(t);
+t(아무것도 갖춰진 것이 없는 사람)
+t(신이 사람을 설계)
+->눈(볼 수 있도록 하기 위해)
+->귀(들을 수 있도록...)
+->코(맡을 수 있도록...)-->
+
+
+
+
+
+
+<!--나는 오늘 멀티캠퍼스에서 장고를 설치했다-->
+<!--(나는,오늘) (오늘,멀티캠퍼스에서) ...-->
+
+<!--멀티캠퍼스에서 오늘 나는 장고를 설치할 것이다->konlpy라이브러리(형태소 분석기 종류:kkoran, okt, 등등)-->
+<!--(멀티캠퍼스에서, 오늘), (오늘, 나는),...-->
+<!--konlpy.org-->
+
+
+
+
+
+<!--
+click
+클릭했을 때 발생하는 이벤트.
+dblclick
+더블클릭을 했을 때 발생하는 이벤트
+mousedown
+마우스를 누를 때 발생
+mouseup
+마우스버튼을 땔 때 발생
+mousemove
+마우스를 움직일 때
+mouseover
+마우스가 엘리먼트에 진입할 때 발생
+mouseout
+마우스가 엘리먼트에서 빠져나갈 때 발생
+contextmenu
+컨텍스트 메뉴가 실행될 때 발생
+-->
+
+
+
+
+
+
+
