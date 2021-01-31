@@ -50,24 +50,32 @@
 # aa1+aa2		AAAA12		43690
 # E=M*C^2	e=m*c^2		65536
 
+# 다중집합 A = {1, 1, 2, 2, 3}, 다중집합 B = {1, 2, 2, 4, 5}라고 하면, 교집합 A ∩ B = {1, 2, 2}, 합집합 A ∪ B = {1, 1, 2, 2, 3, 4, 5}
 
 import re
-p = re.compile('[a-zA-Z가-힣][a-zA-Z가-힣]')
+
+p = re.compile('[a-zA-Z][a-zA-Z]')
 
 
 def multiset(str):
     myList = []
-    for i in range(len(str)-1):
-        myList.append(str[i]+str[i+1])
+    for i in range(len(str) - 1):
+        myList.append(str[i] + str[i + 1])
     return myList
 
 
 def intersection(str1, str2):
     myList2 = []
-    for j in str1:
+    for j in set(str1):
         if j in str2:
-            myList2.append(j)
+            if str1.count(j) > str2.count(j):
+                for k in range(str2.count(j)):
+                    myList2.append(j)
+            else:
+                for k in range(str1.count(j)):
+                    myList2.append(j)
     return myList2
+
 
 def unionsection(str1, str2):
     union = str1 + str2
@@ -82,23 +90,53 @@ def jacquard(str1, str2):
     if len(union) == 0:
         return 65536
     else:
-        return int(float(len(inter) / len(union))*65536)
+        return int(float(len(inter) / len(union)) * 65536)
 
-str1 = "aa1+aa2".upper()
-str2 = "AAAA12".upper()
+
+str1 = "france".upper()
+str2 = "french".upper()
 str1_re = p.findall(str(multiset(str1)))
 str2_re = p.findall(str(multiset(str2)))
-
 
 jacquard(str1_re, str2_re)
 
 
 
-
-
+#FR, RA, AN, NC, CE}, {FR, RE, EN, NC, CH}가 되며, 교집합은 {FR, NC}, 합집합은 {FR, RA, AN, NC, CE, RE, EN, CH}
 #################################################################3
+#다중집합 A = {1, 1, 2, 2, 3}, 다중집합 B = {1, 2, 2, 4, 5}라고 하면, 교집합 A ∩ B = {1, 2, 2}, 합집합 A ∪ B = {1, 1, 2, 2, 3, 4, 5}
+def jaccard_sim(str1, str2):
+    import re
+    str1 = [str1[i:i + 2].upper() for i in range(len(str1) - 1) if not re.search("[^a-zA-Z]", str1[i:i + 2])]
+    str2 = [str2[i:i + 2].upper() for i in range(len(str2) - 1) if not re.search("[^a-zA-Z]", str2[i:i + 2])]
+
+    inter = 0
+    union = 0
+    set1 = set(str1)
+    set2 = set(str2)
+    for i in set(str1):
+        if i in str2:
+            inter += min(str1.count(i), str2.count(i))
+            union += max(str1.count(i), str2.count(i))
+            set1.remove(i)
+            set2.remove(i)
+
+    # union += len(set1|set2)
+    for i in set1:
+        union += str1.count(i)
+    for i in set2:
+        union += str2.count(i)
+
+    if inter == 0:
+        print(65536)
+    else:
+        print(int(inter / union * 65536))
 
 
+jaccard_sim("FRANCE", "french")  # 16384
+jaccard_sim("handshake", "shake hands")  # 65536
+jaccard_sim("aa1+aa2", "AAAA12")  # 43690
+jaccard_sim("E=M*C^2", "e=m*c^2")  # 65536
 #
 # 3. 계산기 수정
 # - 숫자1, 2 입력 상자와  라벨을 연결하시오(묵시적)
