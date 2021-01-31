@@ -124,7 +124,9 @@ print(li)
 
 
 
-
+# 예 3)
+# 입력: -2 A B C D E F G
+# 출력: C D E F G A B
 
 #다사람 풀이
 def trunList(s):

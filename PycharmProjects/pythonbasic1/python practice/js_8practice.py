@@ -93,7 +93,7 @@ print(solution("aabbaccc"))
 
 
 
-#
+#ababcdcd
 def solution(s):
     leng=[]
     for n in range(1,len(s)//2+1):

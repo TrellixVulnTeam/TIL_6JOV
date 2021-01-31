@@ -13,8 +13,11 @@
 #     return cnt
 # print(count_digit(n),"의자릿수")
 
+a=input("숫자를 입력하세요:")
 
-#
+print(10**(len(a)-1),"의 자리수",sep="")
+
+
 # 2.
 # 리스트에 있는 숫자들의 중앙값을 구하는 프로그램을 만들어라.
 #
@@ -42,6 +45,18 @@ import statistics
 test=[100,200,50,90,300,120]
 print(statistics.median(test))
 
+
+
+#다른 풀이
+
+def median(ls):
+    ls.sort()
+    if len(ls)%2==0:
+        a=len(ls)//2
+        print(int(sum([ls[a-1],ls[a]])/2))
+
+    else:
+        print(ls[len(ls)//2])
 
 
 
@@ -87,7 +102,42 @@ def OneEditApart(s1,s2):
 print(OneEditApart("cat", "acts"))
 
 
+###################################################
+def oneEditApart(s1,s2):
+    if len(s1)+1 == len(s2):
+        for i in range(len(s2)):
+            if s1 == s2.replace(s2[i],"",1):
+                return True
+        return False
+    elif len(s1) == len(s2)+1:
+        for i in range(len(s1)):
+            if s2 == s1.replace(s1[i],"",1):
+                return True
+        return False
+    elif len(s1) == len(s2):
+        a = 0
+        for i in range(len(s1)):
+            if s1[i] != s2[i]:
+                a += 1
+        if a <= 1:
+            return True
+        else:
+            return False
+    else:
+        return False
 
+print(oneEditApart("cat", "dog"))   #False
+print(oneEditApart("cat", "cats"))  #True
+print(oneEditApart("cat", "cut"))   #True
+print(oneEditApart("cat", "cast"))  #True
+print(oneEditApart("cat", "at"))    #True
+print(oneEditApart("cat", "acts"))  #False
+print(oneEditApart("cat", "acat"))  #True
+print(oneEditApart("cat", "aacts")) #False
+print(oneEditApart("cat", "caat"))  #True
+print(oneEditApart("cat", "cp"))    #False
+print(oneEditApart("llllo", "lllllo")) #True
+print(oneEditApart("hello", "hillo"))  #True
 
 
 #cat==dog 문자열 길이 같은 경우
@@ -105,10 +155,14 @@ print(OneEditApart("cat", "acts"))
 # 4.
 # 2018년 카카오 신입 공채 1차 코딩 테스트 문제입니다.
 #
-# 네오는 평소 프로도가 비상금을 숨겨놓는 장소를 알려줄 비밀지도를 손에 넣었다. 그런데 이 비밀지도는 숫자로 암호화되어 있어 위치를 확인하기 위해서는 암호를 해독해야 한다. 다행히 지도 암호를 해독할 방법을 적어놓은 메모도 함께 발견했다.
+# 네오는 평소 프로도가 비상금을 숨겨놓는 장소를 알려줄 비밀지도를 손에 넣었다.
+# 그런데 이 비밀지도는 숫자로 암호화되어 있어 위치를 확인하기 위해서는 암호를 해독해야 한다.
+# 다행히 지도 암호를 해독할 방법을 적어놓은 메모도 함께 발견했다.
 #
 # 지도는 한 변의 길이가 n인 정사각형 배열 형태로, 각 칸은 “공백”(“ “) 또는 “벽”(“#”) 두 종류로 이루어져 있다.
-# 전체 지도는 두 장의 지도를 겹쳐서 얻을 수 있다. 각각 “지도 1”과 “지도 2”라고 하자. 지도 1 또는 지도 2 중 어느 하나라도 벽인 부분은 전체 지도에서도 벽이다. 지도 1과 지도 2에서 모두 공백인 부분은 전체 지도에서도 공백이다.
+# 전체 지도는 두 장의 지도를 겹쳐서 얻을 수 있다. 각각 “지도 1”과 “지도 2”라고 하자.
+# 지도 1 또는 지도 2 중 어느 하나라도 벽인 부분은 전체 지도에서도 벽이다.
+# 지도 1과 지도 2에서 모두 공백인 부분은 전체 지도에서도 공백이다.
 # “지도 1”과 “지도 2”는 각각 정수 배열로 암호화되어 있다.
 # 암호화된 배열은 지도의 각 가로줄에서 벽 부분을 1, 공백 부분을 0으로 부호화했을 때 얻어지는 이진수에 해당하는 값의 배열이다.
 #
@@ -140,40 +194,40 @@ print(OneEditApart("cat", "acts"))
 # 출력	["######", "###  #", "##  ##", " #### ", " #####", "### # "]
 
 
-# def secret_map(n,arr1,arr2):
-#
-#     li=[]
-#     for i in range(0,len(arr1)):
-#         arr1[i]=bin(arr1[i])
-#         arr1[i]=arr1[i][2:]   #101
-#         if len(arr1[i])<n:
-#             while len(arr1[i])<n:
-#                 arr1[i]="0"+arr1[i]
-#     for i in range(0,len(arr2)):
-#         arr2[i]=bin(arr2[i])
-#         arr2[i]=arr2[i][2:]
-#         if len(arr2[i])<n:
-#             while len(arr2[i])<n:
-#                 arr2[i]="0"+arr2[i]
-#     for i in range(0,n):
-#         temp=""
-#         for j in range(0,n):
-#             if arr1[i][j]=="1" or arr2[i][j]=="1":
-#                 temp+="1"
-#             if arr1[i][j]=="0" and arr2[i][j]=="0":
-#                 temp+="0"
-#             li.append(temp)
-#
-#         for i in range(0,n):
-#             temp=""
-#             for j in range(0,n):
-#                 if li[i][j]=="1":
-#                     temp+="#"
-#                 if li[i][j]=="0":
-#                     temp+=" "
-#
-#             li[i]=temp
-#         return li
+def secret_map(n,arr1,arr2):
+
+    li=[]
+    for i in range(0,len(arr1)):
+        arr1[i]=bin(arr1[i])
+        arr1[i]=arr1[i][2:]   #101
+        if len(arr1[i])<n:
+            while len(arr1[i])<n:
+                arr1[i]="0"+arr1[i]
+    for i in range(0,len(arr2)):
+        arr2[i]=bin(arr2[i])
+        arr2[i]=arr2[i][2:]
+        if len(arr2[i])<n:
+            while len(arr2[i])<n:
+                arr2[i]="0"+arr2[i]
+    for i in range(0,n):
+        temp=""
+        for j in range(0,n):
+            if arr1[i][j]=="1" or arr2[i][j]=="1":
+                temp+="1"
+            if arr1[i][j]=="0" and arr2[i][j]=="0":
+                temp+="0"
+            li.append(temp)
+
+        for i in range(0,n):
+            temp=""
+            for j in range(0,n):
+                if li[i][j]=="1":
+                    temp+="#"
+                if li[i][j]=="0":
+                    temp+=" "
+
+            li[i]=temp
+        return li
 
 
 
