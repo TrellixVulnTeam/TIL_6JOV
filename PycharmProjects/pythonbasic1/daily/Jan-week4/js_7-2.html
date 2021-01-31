@@ -3,20 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
+<script>
+window.onload=function(){
+frm.id.focus();
+frm.signup.onclick=chkData;
+frm.birth.onchange=calAge;
+}
+function chkData(){
+if(frm.id.value.length<6|frm.id.value.length>12){
+alert("ID를 6글자 이상 12글자 이하로 만드세요");
+frm.id.focus();
+}
+var regId=/^[a-zA-z]+\w*$/;
+if(!frm.id.value.match(regId)){
+alert("ID를 영어와 숫자 조합으로 만드세요(영어로 시작)");
+frm.id.focus();
+}
+if(frm.pw1.value!=frm.pw2.value){
+alert("비밀번호가 다릅니다");
+frm.pw1.value="";
+frm.pw2.value="";
+frm.pw1.focus();
+}
+var chk=0;
+var count=frm.hobby.length;
+for(var i=0;i<count;i++){
+    if(frm.hobby[i].checked==true){
+    chk++;
+	}
+}
+if(chk===4){
+alert("취미를 3개 이하로 선택하세요");
+for(var i=0;i<count;i++){
+    frm.hobby[i].checked=false;
+	}
+}
+if(frm.email.value.length>12){
+alert("email ID를 12글자 이하로 입력하세요");
+frm.email.focus();
+}
+var regEmail=/^[a-zA-z]+\w*$/;
+if(!frm.email.value.match(regEmail)){
+alert("email ID를 영어와 숫자 조합으로 입력하세요(영어로 시작)");
+frm.email.focus();
+}
+if(!frm.tel1.value.match(/\d{2,3}/)||
+!frm.tel2.value.match(/\d{3,4}/)||
+!frm.tel3.value.match(/\d{4}/)){
+alert("전화번호를 확인하세요")
+frm.tel1.focus();
+}
+if(frm.memo.value.length<10){
+alert("자기소개를 10글자 이상 입력하세요")
+}
+}
+function calAge(){
+var birthYear=frm.birth.value.substring(0,4);
+var thisYear=new Date().getFullYear();
+frm.age.value=thisYear-birthYear+1;
+}
+</script>
 
-    <script>
-    window.onload=function(){
-    frm.id.focus();
-    frm.signup.onclick=chkDate;
-    frm.birth.onchange=calAge;
-    }
-    function chkData(){
-
-
-    }
-
-
-    </script>
 
 
 
@@ -98,6 +145,13 @@
                     <option>daum.net</option>
                     <option>google.com</option>
                 </select>
+            </td>
+            </tr>
+
+                                    <tr>
+            <td>전화번호</td>
+            <td><input type="text" name="tel" id="tel">
+
             </td>
             </tr>
 
