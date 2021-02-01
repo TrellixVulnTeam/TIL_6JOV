@@ -229,3 +229,53 @@ def keyWord(words,queries):
         print(result)
         keyWord(words,queries)
 
+#다른 분 풀이
+def cnt_match(words,q):
+    import re
+    cnt = 0
+    for w in words:
+        if re.match(q, w):
+            cnt += 1
+    return cnt
+
+def num_match(words, queries):
+    import re
+    res = []
+    for q in queries:
+        if re.search("^\?+[a-z]*$",q):
+            idx = re.match("\?+",q).span()
+            q = "^[a-z]{"+str(idx[1])+"}"+q[idx[1]:]+"$"
+            res.append(cnt_match(words,q))
+
+        elif re.search("^[a-z]*\?+$",q):
+            idx = re.search("\?+",q).span()
+            q = "^"+q[:idx[0]]+"[a-z]{"+str(idx[1]-idx[0])+"}$"
+            res.append(cnt_match(words, q))
+        else:
+            res.append(q + ": 불가능한 키워드")
+    return res
+
+print(num_match(["frodo", "front", "frost", "frozen", "frame", "kakao"],["fro??", "????o", "fr???", "fro???", "pro?", "fr?do"]))
+# [3, 2, 4, 1, 0, 'fr?do: 불가능한 키워드']
+
+
+#(main) num_match 함수 :
+#
+# - queries 요소 q를 정규표현식으로 변환 (?가 앞에 있는 경우, ?가 뒤에 있는 경우 분리하여 진행)
+#
+#     ex) fro?? >>> ^fro[a-z]{2}$
+#
+#           ????o >>> ^[a-z]{4}o$
+#
+# - 변환한 요소 q를 cnt_match​ 함수에 넣은 결과(cnt)를 res에 추가
+#
+# - 결과로 res를 리턴
+#
+# ​
+#
+# (sub) cnt_match 함수 :
+#
+# - words에 있는 단어 w가 num_match에서 가공한 q 패턴과 match되면 cnt+1 해줌
+#
+# - 결과로 cnt를 리턴
+
