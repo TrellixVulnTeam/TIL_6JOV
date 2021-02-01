@@ -88,10 +88,18 @@
 #
 
 
-def check_pnum(li):
-    han=['영','일','이','삼','사','오','육','칠','팔','구']
-    num=[str(i) for i in range(10)]
-
+# def check_pnum(li):
+#     han=['영','일','이','삼','사','오','육','칠','팔','구']
+#     num=[str(i) for i in range(10)]
+#     li=li.replace('-','').replace('.','').replace(' ','')
+#     for i in range(10):
+#         li=li.replace(han[i],num[i])
+#     if li[0:3]=='010' and len(li)!=11:
+#         print(li,False)
+#     else:
+#         print(li,True)
+#
+# check_pnum("영일일 34구구 4 오 9 이")
 
 
 
@@ -106,8 +114,43 @@ def check_pnum(li):
 # 예를 들어 45는 카프리카 수인데, 45² = 2025이고, 20+25 = 45이기 때문이다.
 #
 # 1)어떤 수를 입력 받고 그 수가 카프리카 수인지 아닌지를 출력하는 함수를 만드시오.
+# 2)어떤 수를 입력 받고 자릿수가 그 수인 모든 카프리카 수를 출력하시오.
 
+# 3)어떤 수를 입력 받고 어떤 수 이하의 모든 카프리카 수를 출력하시오.
+
+
+
+#1)어떤 수를 입력 받고 그 수가 카프리카 수인지 아닌지를 출력하는 함수를 만드시오.
+# def checknum(n):
+#     num=n**2
+#     lennum=len(str(n))
 #
+#     if n==1:
+#         return True
+#
+#     for i in range(1,lennum):
+#         if int(str(num)[i:])>0:
+#             if (int(str(num)[:i])+int(str(num)[i:])) == n:
+#
+#                 return True
+#             else:
+#                 return False
+
+#2)어떤 수를 입력 받고 자릿수가 그 수인 모든 카프리카 수를 출력하시오.45
+# def checknum2(n):
+#     lennum=len(str(n))
+#     result=[]
+#     for i in range(10**(lennum-1),10**lennum):
+#         if checknum(i)=='True':
+#             result.append(i)
+#     return result
+
+
+
+
+
+
+
 # 이 셋중에서 원하는 유형 하나를 골라 푸시오.
 #
 # 입력 (유형 1)
@@ -148,4 +191,32 @@ def check_pnum(li):
 # 3
 # 5
 # False
-#
+
+def kaprekar_constant(num):
+    str_num=str(num)
+    cnt=0
+
+    if len(set(str_num))!=1 or len(str_num)!=4:
+        while str_num!='6174':
+            low=''.join(sorted(str_num)).zfill(4)
+            high=low[::-1]
+
+            str_num=str(int(high)-int(high)).zfill(4)
+            cnt+=1
+
+        print(cnt)
+    else:
+        print(False)
+
+kaprekar_constant(4371)
+
+
+
+
+
+
+
+
+
+
+
