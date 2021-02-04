@@ -1,10 +1,20 @@
 # 1. 유클리드 호제법으로 구현(뺄셈, 나눗셈)
 #
 
-# def gcd(a,b):
-#     while b:
-#         a,b=b,a%b
-#         return a
+def getGcd(num1, num2):    #10 6
+    while num2 != 0:
+        r = num1 % num2
+        num1 = num2
+        num2 = r
+    return num1
+
+
+
+
+def getLcm(num1, num2):
+    lcm = (num1 * num2) // getGcd(num1, num2)
+    return lcm
+
 
 # 2.
 # 정보통신처에서는 2016년 6월 4일 인하 광장에서 이벤트를 진행하려고 한다.
@@ -123,7 +133,13 @@ for j in test_case:
 # printTime(3,5,4)
 
 
+# 1 1 5
 
+
+# 3 5 4
+
+#3 6 9 12
+#5 10 15 20
 
 #승혀니풀이
 printer = []
@@ -131,9 +147,9 @@ num = int(input())
 for i in range(num):
     printer.append(list(map(int, input().split())))
 
-def printerf(printer):
+def printerf(printer):  # 3 5 4
     n = 1
-    cnt = 0
+    cnt = 0  #cnt=1
     while(1):
         if n % printer[0] == 0:
             cnt += 1
