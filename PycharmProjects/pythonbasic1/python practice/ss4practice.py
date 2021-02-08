@@ -165,3 +165,43 @@ def printerf(printer):  # 3 5 4
 
 for j in printer:
     print(printerf(j), end=" ")
+
+
+
+#e다른 분 풀이
+
+
+#전체소요시간//한 페이지를 출력하는 데 드는 소요시간 = 전체 소요시간 내 프린트 가능한 페이지 수
+
+
+#
+# time//X + time//X >= N 을 만족하는 시간을 구하기 위해 time을 1부터 차례대로 계산하기로 했으나
+#
+# 비효율적이라고 판단
+#
+#
+#
+# -> 반복문을 줄이기 위해 아래와 같이 time변수를 설정함
+#
+#
+#
+# 한장을 프린트할 때 걸리는 시간-> X, Y
+#
+# 단위시간당 프린트 수 -> 1/X, 1/Y
+#
+# N장을 뽑기 위해 필요한 최소 시간 -> N / (1/X + 1/Y)
+#
+# 최소시간을 올림처리(해야 하지만 math 모듈을 불러오지 않고 내림처리함) -> time
+
+
+def printing(num,*line):  #line은 가변인자
+    # print(num,line)  #num=2, line=("1 1 5", "3 5 4")
+    for i in line:
+        x,y,n=[int(j) for j in i.split(" ")]
+
+        time=int(n/(1/x+1/y))  #계산수를 줄이기 위해 최소시간을 구함 #2.5 7.5
+        while time//x + time//y < n:
+            time+=1
+        print(time,end=" ")
+
+printing(3,'1 1 5','3 5 4')  #3 9
