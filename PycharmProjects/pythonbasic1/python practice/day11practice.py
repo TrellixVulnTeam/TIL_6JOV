@@ -4,24 +4,24 @@ from urllib.request import urlopen
 
 import re
 
-from selenium import webdriver
-
-driver = webdriver.Chrome('/Users/junmishin/chromedriver')
-
-url = "http://search.danawa.com/dsearch.php?query=무선청소기&tab=main"
-
-driver.get(url)
-
-from bs4 import BeautifulSoup
-
-html = driver.page_source
-
-soup = BeautifulSoup(html, 'html.parser')
-# 1) 노트북 모델명(굵은 글씨)
-# print(soup)
-name = soup.select('#productItem9781572 > div > div.prod_info > p > a')
-for i in name:
-    print(i.string)
+# from selenium import webdriver
+#
+# driver = webdriver.Chrome('/Users/junmishin/chromedriver')
+# #
+# url = "http://search.danawa.com/dsearch.php?query=무선청소기&tab=main"
+#
+# driver.get(url)
+#
+# from bs4 import BeautifulSoup
+#
+# html = driver.page_source
+#
+# soup = BeautifulSoup(html, 'html.parser')
+# # 1) 노트북 모델명(굵은 글씨)
+# # print(soup)
+# name = soup.select('#productItem9781572 > div > div.prod_info > p > a')
+# for i in name:
+#     print(i.string)
 
 
 
@@ -55,18 +55,18 @@ print("="*50)
 #
 # #1. 다나와 사이트 노트북 검색결과
 # ###공통 작업###
-# from selenium import webdriver
-# from bs4 import BeautifulSoup
-# import time
-#
+from selenium import webdriver
+from bs4 import BeautifulSoup
+import time
+driver = webdriver.Chrome('/Users/junmishin/chromedriver')
 # driver = webdriver.Chrome("c:/scrap/chromedriver.exe")
-# url = "https://search.danawa.com/dsearch.php?k1=%EB%85%B8%ED%8A%B8%EB%B6%81&module=goods&act=dispMain"
-# driver.get(url)
-# time.sleep(5)       #로딩 되기 전에 페이지 소스 긁어오지 않게 하기 위함
+url = "https://search.danawa.com/dsearch.php?k1=%EB%85%B8%ED%8A%B8%EB%B6%81&module=goods&act=dispMain"
+driver.get(url)
+time.sleep(5)       #로딩 되기 전에 페이지 소스 긁어오지 않게 하기 위함
 #
-# html=driver.page_source
-# soup = BeautifulSoup(html, "html.parser")
-# driver.close()
+html=driver.page_source
+soup = BeautifulSoup(html, "html.parser")
+driver.close()
 #
 # #1-1. 노트북 모델명 (굵은 글씨) 출력
 # item_containers = soup.select('#productListArea > div.main_prodlist.main_prodlist_list > ul > li.prod_item')
@@ -76,12 +76,12 @@ print("="*50)
 #         name = i.select_one(".prod_name > a").text
 #         print(name)
 #
-# #1-2. 인치
-# item_containers = soup.select('#productListArea > div.main_prodlist.main_prodlist_list > ul > li.prod_item')
-# for i in item_containers:
-#     if i.has_attr('id'):
-#         inch = i.select_one(".spec_list > a:nth-child(1)").string
-#         print(inch)
+#1-2. 인치
+item_containers = soup.select('#productListArea > div.main_prodlist.main_prodlist_list > ul > li.prod_item')
+for i in item_containers:
+    if i.has_attr('id'):
+        inch = i.select_one(".spec_list > a:nth-child(1)").string
+        print(inch)
 #
 # #1-3. 등록월
 # item_containers = soup.select('#productListArea > div.main_prodlist.main_prodlist_list > ul > li.prod_item')
