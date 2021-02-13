@@ -11,17 +11,17 @@
 
 #다른 풀이
 #
-# def sort(*num):
-#     negative,positive=[],[]
-#     for i in num:
-#         if i<0:
-#             negative.append(a)
-#         elif i>0:
-#             positive.append(a)
-#     return negative+positive
-#
-# a=sort(1,-1,2,3,4,-2)
-# print(a)
+def sort(*num):
+    negative,positive=[],[]
+    for i in num:
+        if i<0:
+            negative.append(a)
+        elif i>0:
+            positive.append(a)
+    return negative+positive
+
+a=sort(1,-1,2,3,4,-2)
+print(a)
 
 
 
