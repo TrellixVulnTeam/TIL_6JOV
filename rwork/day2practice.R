@@ -17,6 +17,7 @@ rep(x,times=5)
 rep(x,length.out=10)
 # - 2,2,5,5,5,5,5,3,3,3
 c(rep(2,each=2),rep(5,each=5),rep(3,each=3))
+rep(x,c(2,5,3))
 
 
 
@@ -74,3 +75,5 @@ mat
 # 마지막 세 개 행과 마지막 두 개 열로 구성된 3*2 부분행렬을 만드시오.
 
 mat[c(dim(mat)[1]-2,dim(mat)[1]),c(dim(mat)[2]-1,dim(mat)[2])]
+
+mat[1109:1111,8:9]

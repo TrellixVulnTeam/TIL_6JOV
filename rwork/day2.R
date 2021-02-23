@@ -6,7 +6,7 @@ p[c(1,5,7)]
 
 p[-3]
 p[-3:-5]
-p[-3:5]
+
 p[-(3:5)]
 
 p[1:length(p)-1]
@@ -21,6 +21,7 @@ p
 
 #불린참조
 p
+
 p<10
 
 p[p<10]  #p<10보다 작은 값들만 참조 출력(TRUE에 해당하는 것만 출력됨)
@@ -41,14 +42,13 @@ month.abb[which(data>105)]
 month.name[which(data>105)]
 
 which.min(data)  #data에 저장된 자료 중 최소값의 인덱스
-which.max(data)  #data에 저장된 자료 ㅂ중 최대값의 인덱스
+which.max(data)  #data에 저장된 자료 중 최대값의 인덱스
 
 #요일별 교통하고 사망자수 데이터
 traffic.death<-c(100,90,80,70,120,150,200) #월~일 사망자 수 
 
 #토요일 사망자수
 traffic.death[6]
-
 names(traffic.death)<-c('mon','tue','wed','thu','fri','sat','sun')
 names(traffic.death)
 
