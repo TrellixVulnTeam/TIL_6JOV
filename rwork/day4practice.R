@@ -39,6 +39,23 @@ x
 library(MASS)
 cats
 
+
+#다른풀이
+
+with(cats,{
+  print(mean(Bwt))
+  print(mean(Hwt))
+  print(sd(Bwt))
+  print(sd(Bwt))
+  
+})
+
+#위에 걸 활용해서 평균 구하는 방법: colMean()함수 활용
+cats
+colMeans(cats[2:3],na.rm = TRUE)
+
+
+
 # -생쥐 자료(cats)의 자료의 수를 구하시오
 str(cats)
 nrow(cats)
@@ -129,6 +146,7 @@ v1
 iris
 target<-c(4.0, 3.0, 1.5, 0.15)
 new<-rbind(iris,target)
+new
 tail(new)
 msl<-mean(new$Sepal.Length)
 msw<-mean(new$Sepal.Width)
@@ -144,7 +162,7 @@ new[1:4]
 t(new[1:4])
 dim(t(new[1:4]))
 infomat<-t(new[1:4])
-#표준화
+#표준화=(각 data-평균)/표준편차
 infomat<-(infomat-c(msl,msw,mpl,mpw))/c(ssl,ssw,spl,spw)
 infomat
 
@@ -152,5 +170,122 @@ dist<-(infomat-infomat[,151])^2
 dist<-sqrt(colSums(dist))
 data.frame(dist)
 new<-cbind(new,dist)
+new
 key<-sort(new$dist)[10]
 summary(new$Species[new$dist<=key])
+
+
+#다른풀이
+
+x <- c(4.0-min(iris$Sepal.Length)/(max(iris$Sepal.Length) - min(iris$Sepal.Length)), 
+       3.0- min(iris$Sepal.Width) / (max(iris$Sepal.Width) - min(iris$Sepal.Width)), 
+       1.5- min(iris$Petal.Length) / (max(iris$Petal.Length) - min(iris$Petal.Length)), 
+       0.15 - min(iris$Petal.Width) / (max(iris$Petal.Width) - min(iris$Petal.Width)))
+x
+
+# 정규화 작업(normalization) : (각각의 자료값 - 최소값) / (최대값 - 최소값)
+iris$Sepal.Length <- (iris$Sepal.Length - min(iris$Sepal.Length)) / (max(iris$Sepal.Length) - min(iris$Sepal.Length))
+iris$Sepal.Width <- (iris$Sepal.Width - min(iris$Sepal.Width)) / (max(iris$Sepal.Width) - min(iris$Sepal.Width))
+iris$Petal.Length <- (iris$Petal.Length - min(iris$Petal.Length)) / (max(iris$Petal.Length) - min(iris$Petal.Length))
+iris$Petal.Width <- (iris$Petal.Width - min(iris$Petal.Width)) / (max(iris$Petal.Width) - min(iris$Petal.Width))
+iris
+
+iris.euclid <- within(iris, euclid <- sqrt(rowSums((iris[,-5] - x)^2)))
+iris.euclid
+
+key<-sort(iris.euclid$euclid)[1:10]
+key
+summary(iris.euclid$Species[iris.euclid$euclid<=key])
+
+
+#다른풀이
+
+iris
+ex<-c(4.0,3.0,1.5,0.15)
+iris<-rbind(iris,ex)
+temp<-t(iris[1:4])
+temp
+iris$distance<-sqrt(colSums(temp-ex)^2)
+table(head(iris[order(iris$distance),],9)$Species)
+
+
+#다른풀이
+data(iris)
+iris
+
+#표준화(평균0 표준편차1), 정규화
+#표준화=(각 data-평균)/표준편차
+#정규화=(각 열 data-각 열 최소값)/ (각 열 최대값 열 최초값)
+
+
+#표준화
+misl<-mean(iris$Sepal.Length)
+misw<-mean(iris$Sepal.Width)
+mipl<-mean(iris$Petal.Length)
+mipw<-mean(iris$Petal.Width)
+
+sisl<-sd(iris$Sepal.Length)
+sisw<-sd(iris$Sepal.Width)
+sipl<-sd(iris$Petal.Length)
+sipw<-sd(iris$Petal.Width)
+
+misl
+
+tempIris<-t(iris[1:4])
+tempIris
+
+(tempIris-c(misl,misw,mipl,mipw))/c(sisl,sisw,sipl,sipw)
+
+
+
+#####
+
+#scale():표준화해주는 함수
+iris
+scale(iris[,1])
+data(iris)
+iris
+
+
+#첫번째 열에 대한 표준화 작업
+head((iris[,1]-mean(iris[,1]))/sd(iris[,1]))  #vector
+
+#같은 결과
+head(scale(scale(iris[,1])))  #martrix
+
+
+
+#정규화 작업을 할 경우
+(iris[,1]-min(iris[,1])) / (max(iris[,1])-min(iris[,1]))
+
+
+
+
+
+
+
+
+
+
+#iris의 1번째 열에 대한 표준화
+(iris[,1]-mean(iris[,1]))/sd(iris[,1])
+(iris[,2]-mean(iris[,2]))/sd(iris[,2])
+
+
+class(iris[,-5])
+#mean(iris[,-5])  #오류나옴(수치연산 함수는 그 대상이 수치 벡터여야 함)
+#sd(iris[,-5])  #역시 오류
+
+
+cbind(iris,ss=scale(iris[,-5]))
+
+#apply(데이터, 행(1)/열(2), 함수)
+
+
+apply(iris[,-5], 2, scale)
+#윗 문장이랑 동일
+siris<-apply(iris[,-5], 2, function(x){(x-mean(x))/sd(x, na.rm=TRUE)})
+
+cbind(iris,siris)
+
+
