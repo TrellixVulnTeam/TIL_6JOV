@@ -31,6 +31,10 @@ ltxt<-strsplit(x,' ')
 ltxt
 ltxt[[1]]
 ltxt[[2]]
+#or
+word<-unlist(strsplit(word,split=" "))
+word<-gsub(pattern = ','|'-',replacement = '',x)
+
 # 5. 주민번호 뒤 일곱 자리 수를 *로 모두 대체하시오(?)
 # "110101-1234123" "950102-2121212"
 id<-c("110101-1234123","950102-2121212")
@@ -50,12 +54,23 @@ apply(id,1,function(x){
   return(x)
 })
 
+#다른방법
+substring(id,8)<-"*******"
+
+#다른방법
+num <-c("110101-1234123","950102-2121212")
+gsub(pattern='-\\d+','-*******',num)
+
+
 # 6. paste함수와 month.abb를 결합하여 "Jan_1-Feb_2- ... Dec_12"를 생성하시오
 
 num<-paste(1:12)
 num
 month.abb
 paste(month.abb,num,sep = "_")
+#다른방법
+paste(month.abb,1:12,sep='_',collapse = '-')
+
 
 # 7. read.csv(file="samsung.csv")
 # 1) Open, High, Low, Close, Adj.Close, Volume 열을 추출
@@ -103,3 +118,4 @@ apply(fall,2,max)
 apply(df[,3:4], 2, function(x){max(x[1:nrow(df)-1]-x[2:nrow(df)])})
 #High  Low 
 #5400 5250 
+
