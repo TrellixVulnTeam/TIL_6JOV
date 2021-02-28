@@ -54,6 +54,7 @@ names(traffic.death)
 
 traffic.death['sat']
 
+
 traffic.death[c('sat','wed')]
 
 
@@ -76,6 +77,7 @@ review.factor
 
 str(review.factor)
 str(review)
+
 
 as.numeric(review.factor) #팩터형->숫자벡터로 변환
 
@@ -139,6 +141,7 @@ matrix(data=v,nrow=3,ncol=4,byrow=TRUE)
 
 #생략해도 됨
 matrix(v,3,4,byrow=TRUE)
+
 
 
 rnames<-c('r1','r2','r3')
@@ -306,3 +309,4 @@ colSums(mtx)
 rowMeans(mtx)
 #열 평균
 colMeans(mtx)
+

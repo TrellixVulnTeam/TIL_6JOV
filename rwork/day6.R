@@ -147,12 +147,13 @@ months(qrt)
 quarters(qrt)  #분기정보
 
 
-install.packages("editData")
+install.packages("reprex")
 
 #입력
+
 product<-data.frame()
 product
-product<-editData(product)  #fix(product)와 같은 문장
+product<-edit(product)  #fix(product)와 같은 문장
 product
 
 
@@ -174,9 +175,81 @@ read.table(file="clipboard",sep="\t",header=TRUE)
 
 
 
+read.csv("product.csv")
+
+read.csv("product-with-no-header.csv",header=FALSE)
+
+p<-read.csv("product.csv",stringsAsFactors = TRUE)
+str(p)
+
+p<-read.csv("product.csv",as.is=TRUE)  #as.is=TRUE는 stringAsFactors=FALSE와 같음
+
+#readtable은 다양한 구성의 자료를 읽을 수 있고 readcsv는 ,로 구분된 자료를 읽음
+#read.table은 첫번째부터 데이터로 봄(헤더 설장 따로 해주어야함)
+p<-read.table("product.txt",header=TRUE)
+p
+
+
+str(p)
+
+
+read.table("product-colon.txt",sep=":",header=TRUE)
+
+
+#NA:데이터 누락(결측값)
+read.table("product-missing.txt",header=TRUE,na.strings =c('누락','몰라'))
+
+
+#read.table()는 #으로 시작하는 라인은 주석문으로 간주하고 무시함
+
+read.table("product-comment.txt",header=TRUE)
+
+brand.eval<-read.table("brand-eval.csv",header=TRUE,sep=",",row.names = "id")
+str(brand.eval)
+brand.eval
+
+
+brand.eval<-read.table("brand-eval.csv",header=TRUE,sep=",",row.names = "id",
+                       colClasses = c('character','character','numeric','numeric','numeric'))
+brand.eval
+
+#엑셀 데이터 읽기 
+install.packages("openxlsx")
+library(openxlsx)
+read.xlsx("product.xlsx",sheet=1)
+
+
+url<-"https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+iris.uci<-read.csv(url,header=FALSE)
+iris.uci
+
+
+download.file(url=url,destfile = "myIris.csv")
 
 
 
+#
+
+url<-"http://seanlahman.com/files/database/baseballdatabank-master_2016-03-02.zip"
+local.copy<-"baseball.zip"
+download.file(url,local.copy)
 
 
+bs<-read.csv(unzip(zipfile = local.copy,"baseballdatabank-master/core/Salaries.csv"))
+head(bs)
 
+
+install.packages("ggplot2")
+library(ggplot2)
+mpg
+
+mpg$displ
+
+midwest<-as.data.frame(midwest)  #tibble->dataframe
+install.packages("dplyr")
+library(dplyr)
+
+#rename(데이터프레임, 변경후컬럼이름=변경전 컬럼 이름)
+midwest
+
+rename(midwest, cg=category)
