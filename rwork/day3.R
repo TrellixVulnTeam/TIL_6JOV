@@ -158,6 +158,7 @@ product
 product[1:3]<-list('a02','monitor',99999)
 product
 
+
 product[[3]]
 
 product[[4]]<-c('domestic','export')
@@ -280,6 +281,7 @@ str(df)
 data.frame(row.names=v1,v2,v3)
 
 p<-data.frame(id=v1,name=v2, price=v3)
+p
 str(p)
 
 
@@ -403,8 +405,8 @@ str(product)
 
 
 #rbind():데이터프레임에 행 추가
-#product<-rbind(product,c('a4','40','k'))
-#product
+product<-rbind(product,c('a4','40','k'))
+product
 
 
 #제거
@@ -421,6 +423,7 @@ product
 new.rows<-data.frame(id=c('a5','a6'),
            name=c('a','b'),
            price=c(50,60))
+new.rows
 
 product<-rbind(product,new.rows)
 product

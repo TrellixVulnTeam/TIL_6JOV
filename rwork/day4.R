@@ -117,10 +117,10 @@ states[states$Income>5000,c('Income','name')]
 
 #states에서 Area가 100000 이상에 해당되는 자료를 출력(name,area)
 large.states<-states[states$Area>100000,c('name','Area')]
-
+large.states
 #조건에 해당되는 모든 열을 가져오고 싶을 때
 rich.states<-states[states$Income>5000,c('Income','Area')]
-
+rich.states
 #데이터프레임결합(기본 값: 공통으로 열(name)이 일치하는 행만 선택)
 #all옵션
 merge(rich.states,large.states) #all=FALSE가 디폴트

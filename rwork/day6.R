@@ -60,6 +60,7 @@ word2<-c("12 Dec", "OK", "http://", "<TITLE>Time?</TITLE>","12345", "Hi there")
 #[[:space:]]: 공백
 #[[:alpha:]]: 알파벳
 
+
 grep("[[:alnum:]]",word2,value = TRUE)
 grep("\\w",word2,value = TRUE)
 

@@ -28,6 +28,7 @@ v1[order(v1)]
 df
 
 order(v1) #오름
+order(v2)
 order(-v2) #내림
 order(v3) #오름
 
@@ -90,6 +91,8 @@ strsplit(x,split="")
 unlist(strsplit(x,split=" "))
 #or
 res<-strsplit(x,split=" ")[[1]]
+res
+class(res)
 res[4]
 
 
@@ -129,6 +132,7 @@ tolower(unique(said.word[[1]]))
 
 
 #정규화작업 
+
 apply(iris[,-5], 2, function(x){(x-min(x,na.rm = TRUE))/max(x, na.rm=TRUE)-min(x, na.rm=TRUE)})
 
 
@@ -143,6 +147,7 @@ paste(c('Everybody','wants','to','fly'))  #한개의 벡터가 되버림,따라�
 #이것도 역시 res가 벡터로 반환되기 때문에 결합하지 않고 따로 나옴
 said<-'WHAT IS ESSENTIAL is invisible to the Eye'
 res<-strsplit(said," ")[[1]]
+res
 paste(res)
 
 
@@ -225,6 +230,7 @@ res<-out<-outer(asia.countries,asia.countries, FUN=paste,sep="-")
 
 
 #lowe.tri():하삼각행렬 TRUE로 반환
+lower.tri(res)
 res[lower.tri(res)]
 #앞에 !붙이면 반전됨
 res[!lower.tri(res)]
@@ -247,8 +253,9 @@ substr(myclass,nchar(myclass)-5,nchar(myclass))
 
 
 #grep():New문자열이 포함된 단어의 인덱스를 추출
-class(islands)
+islands
 landmasses<-names(islands)
+landmasses
 
 index<-grep(pattern="New",x=landmasses)
 landmasses[index]
@@ -291,3 +298,4 @@ df2<-read.csv("samsung.csv")  #,header=TRUE,sep="," 디폴트
 df2
 
 read.csv('samsung.csv',header=FALSE,sep=',')
+,
