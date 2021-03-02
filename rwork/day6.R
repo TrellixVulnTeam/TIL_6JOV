@@ -94,7 +94,7 @@ as.Date("2021-02-26") #date타입->문자열 타입
 as.Date("02/26/2021",format="%m/%d/%y")  #2021-02-25이런 형식이 기본형식,기본형식이 아닐경우 format적용
 
 
-
+f
 d<-as.Date("2021-02-26")
 format(d,format="%m/%d/%y")
 
