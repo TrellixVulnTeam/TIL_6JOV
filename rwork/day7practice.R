@@ -43,12 +43,16 @@ df_midterm<-data.frame(english,math,class)
 df_midterm
 colMeans(df_midterm[-3])
 rowMeans(df_midterm[-3])
+#ㅐr
+apply(df_midterm[-3],2,mean)
+apply(df_midterm[-3],1,mean)
 # 6. 2~99까지 수에 대해
 # - 3의 배수에 해당하는 수의 합계를 구하시오.
 #which(2:99%%3==0)
 sum(c(2:99)[which(2:99%%3==0)])
 # - 3의 배수에 해당하는 수의 개수를 구하시오.
 sum(2:99%%3==0)
+
 #or
 length(which(2:99%%3==0))
 # 7. 임의의 수 n을 전달받아, n!을 출력하는 함수를 완성하시오. (n>=2, 5!=5*4*3*2*1)
@@ -58,20 +62,51 @@ factorial1<-function(n){
   print(a)
 }
 factorial1(4)
-
+#or
+fac<-function(x){
+  if (x>=2){
+    prod(n:1)
+  }
+}
+fac(5)
+#or
+factorial(5)
 # 
 # 8. 반복문을 이용하여 구구단을 출력하시오
 for(dan in 2:9) for(n in 1:9) print(paste(dan,'x',n,'=',dan*n))
+#
+for(i in 2:9){
+  v<-c(1:9)
+  res<-paste(i,"x",v,"=",i*v)
+  print(res)
+}
+#
+i<-2
+while(i<10){
+  v<-seq(from=1,to=9,by=1)
+  res<-paste(i,"x",v,"=",i*v)
+  print(res)
+  i<-i+1
+}
 # 9. 반복문을 활용하여 출력하시오
 #     *
 #    ***
 #   *****
 #   *******
 for(i in 1:4) print(paste(rep(c(' ', '*'), c(4-i, (i*2)-1)),collapse=''))
+#
+for(i in seq(from=1,to=7,by=2)){
+  star<-paste(rep("*",times=i),collapse = "")
+  blank<-paste(rep(" ",times=(7-i)/2),collapse="")
+  print(paste(blank,star))
+}
 #   10.  타이타닉 데이터 전처리
 # - train.csv 파일 읽을 때 "" 는 na로 처리하시오.
 titanichw<-read.csv('train.csv',na.strings = "")
 titanichw
+#or
+titanic <- read.table('train.csv', sep=',', header=T, na.strings=c('', ' '))
+titanic
 # - Surived 컬럼의 타입을 확인하시오.
 str(titanichw)
 class(titanichw$Survived)
