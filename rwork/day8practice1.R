@@ -4,6 +4,8 @@ car<-mtcars
 car$weight<-'light'
 car$weight[car$wt>median(car$wt)]<-'heavy'
 car
+#or
+mtcars$weight <- ifelse(mtcars$wt>median(mtcars$wt), 'heavy', 'light')
 #건수
 table(car$weight)
 #비율
@@ -14,12 +16,18 @@ table(car$weight)/nrow(car)
 
 index<-sort(colnames(car))
 car[,index]
-
+#or
+mtcars2<-mtcars[,order(colnames(mtcars))]
+head(mtcars2)
+#or
+order(names(mtcars))
+mtcars[,order(names(mtcars))]
 # 3. iris데이터에서 70% 데이터를 무작위 표본추출
 str(iris[sample(1:nrow(iris),nrow(iris)*0.7),])
-
-
-
+#or
+set.seed(1)
+idx<-sample(1:nrow(iris),nrow(iris)*0.7)
+iris[idx,]
 # 4. ggplot2 패키지에는 미국 동북중부 437개 지역의 인구통계 정보를 담은 midwest라는 데이터가 포함되어 있음. 
 # midwest 데이터를 사용하여,
 # 불러오기 : midwest<-as.data.frame(ggplot2::midwest)
@@ -28,6 +36,7 @@ midwest<-as.data.frame(ggplot2::midwest)
 head(midwest)
 summary(midwest)
 str(midwest)
+View(midwest)
 # - poptotal(전체 인구)을 total 로, popasian(아시아 인구)을 asian 으로 변수명을 수정
 midwest<-rename(midwest,c(total=poptotal,asian=popasian))
 
@@ -38,6 +47,9 @@ midwest
 midwest$average.asian<-'small'
 midwest$average.asian[midwest$perasian>mean(midwest$perasian)]<-'large'
 head(midwest)
+#or
+mean(per.asian)
+size.asian<-ifelse(per.asian>mean(per.asian),"large","small")
 # - "large"와 "small"에 해당하는 지역이 얼마나 되는지 빈도수를 출력
 table(midwest$average.asian)
 
@@ -49,7 +61,11 @@ head(titanic)
 # - 생존자 수, 사망자 수 출력
 table(titanic$Survived)
 #or
-sum(titanic$Survived==1)
+sum(titanic$Survived)
+sum(!titanic$Survived)
+#or
+sum(!titanic$Survived)  #사망자 합계
+sum(!titanic$Survived)  #사망자 합계
 # - pclass, embarked 별 승객수 출력(비율)
 table(titanic$Pclass)/nrow(titanic)
 table(titanic$Embarked)/nrow(titanic)
@@ -63,6 +79,31 @@ embarked.table <- as.data.frame(table(titanic$Embarked))
 colnames(embarked.table) <- c("embarked","num")
 embarked.table$ratio <- round((embarked.table$num/nrow(titanic)), digits = 3)
 embarked.table
+#or(pop.table함수 사용)
+mydata<-matrix(sample(100,15),ncol=3)
+colnames(mydata)<-LETTERS[seq(1,3)]
+mydata
+
+rownames(mydata)<-sprintf("s-%d",seq(5))
+mydata
+
+prop.table(mydata)
+sum(prop.table(mydata))
+library(dplyr)
+prop.table(mydata) %>% sum  #왼쪽 수행한 결과에 대해서 sum적용 
+
+prop.table(mydata,1)  #margin을 1이라고 주면 행 단위로 비율 구함
+prop.table(mydata,2)  #margin을 2이라고 주면 열 단위로 비율 구함
+
+rowSums(prop.table(mydata,1))
+prop.table(mydata,1) %>% rowSums
+
+#or
+proportions(titanic$Survived)
+proportions(titanic$Embarked)
+
+prop.table
+
 
 # - Name에서 호칭 종류 출력, 호칭 종류 별 승객수 출력
 name2<-unlist(strsplit(titanic$Name,split=' '))
@@ -124,12 +165,32 @@ titanic$Age[titanic$name2=='Mr'&is.na(titanic$Age)] <-mean.mr
 
 mean.others<-mean(titanic$Age[titanic$name2=='Others'],na.rm = T)
 titanic$Age[titanic$name2=='Others'&is.na(titanic$Age)] <-mean.others
+#or
+lev <- levels(factor(titanic$name2))
+lev
+for(i in 1:length(lev)){
+  mean.age <- mean(titanic$Age[titanic$name2==lev[i]],na.rm=T)
+  titanic$Age[titanic$name2==lev[i]&is.na(titanic$Age)] <- mean.age
+}
+#or
+name2.mean <- function(x){
+  res <- mean(na.omit(titanic$Age[titanic$name2==x]))
+  return(res)
+}
+idx <- is.na(titanic$Age)
+titanic$Age[idx] <- unlist(lapply(titanic$name2[idx], name2.mean))
+
 
 # -age열의 구간별 인원수 출력
 # 10대 미만, 10대, 20대, 30대, 40대, 50대 이상
 max(titanic$Age)
 table(cut(titanic$Age,breaks=c(0,10,20,30,40,50,81),right=FALSE))
 # -cabin 컬럼의 1번째 글자 출력(NA는 제외)
-substr(titanic$Cabin[titanic])
+substr(titanic$Cabin[complete.cases(titanic$Cabin)],1,1)
 # - fare열 값에 대해 최대/최소/평균/표준편차 출력
+summary(titanic$Fare)
+sd(titanic$Fare)
 # - sibsp + parch를 더하여 새롭게 family열에 저장
+head(titanic)
+titanic$family <- titanic$SibSp+titanic$Parch
+titanic
