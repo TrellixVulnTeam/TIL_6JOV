@@ -154,6 +154,7 @@ mpl<-mean(new$Petal.Length)
 mpw<-mean(new$Petal.Width)
 
 ssl<-sd(new$Sepal.Length)
+
 ssw<-sd(new$Sepal.Width)
 spl<-sd(new$Petal.Length)
 spw<-sd(new$Petal.Width)

@@ -38,13 +38,15 @@ iris.trans
 
 x<-1:20
 dim(x)<-c(4,5)
+x
 apply(x,1,max)
 
 x<-1:24
 dim(x)<-c(4,3,2)
 x
 
-class(apply(x,1,paste,collapse=","))  #1:행, 2:열, 3: 3번째 차원(으로 paste가 되어짐)
+apply(x,1,paste,collapse=",") #1:행, 2:열, 3: 3번째 차원(으로 paste가 되어짐)
+
 apply(x,2,paste,collapse=",")
 apply(x,3,paste,collapse=",")
 
@@ -91,6 +93,7 @@ sapply(exams,mean)
 lapply(exams,sd)
 sapply(exams,sd)
 
+lapply(exams,range)
 sapply(exams,range)  #길이가 2로 모두 동일함(따라서 출력 결과가 행렬로 나옴)
 
 # s4=c(80,60,60,50,100)
@@ -112,6 +115,7 @@ mapply(rep,1:4,4:1)
 
 #집단 요약(그룹을 기준으로 요약)
 #벡터를 집단별로 분할(split,unstack)
+
 car<-mtcars
 car<-within(car,
        am<-factor(am,
@@ -125,6 +129,7 @@ str(car)
 car
 #mpg를 변속기 종류(2가지)에 따라 분할
 g<-split(car$mpg, car$am)
+g
 class(g)
 #집단별 mpg평균
 
@@ -140,14 +145,15 @@ data.frame(car$mpg,car$am)
 unstack(data.frame(car$mpg,car$am))
 #Species를 기준으로 iris$Sepal.Length를 분류
 gg<-unstack(data.frame(iris$Sepal.Length,iris$Species))
+gg
 str(gg)
 
 
 #unstack함수는 그룹별로 분할된 데이터의 길이가 동일하면 데이터프레임, 동일하지 않으면 리스트로 출력
 g1<-unstack(data.frame(car$mpg,car$am))  #리스트
-
+g1
 g2<-unstack(data.frame(iris$Sepal.Length,iris$Species))  #데이터프레임
-
+g2
 #summary함수는 데이터프레임에 대해 기술통계를 구해주는 함수
 summary(g1) #summary안나옴
 summary(g2) #summary나옴
@@ -173,9 +179,9 @@ str(car)
 #  6
 #  8
 with(car,tapply(mpg, list(cyl,am), mean))
-
+car$cyl
 #aggregate(집계함수): 그룹별로 각각 함수를 적용 
-aggregate(벡터, 리스트 형식으로 집단 변수, 함수)
+#aggregate(벡터, 리스트 형식으로 집단 변수, 함수)
 
 with(car,aggregate(mpg, list(Cylinder=cyl,Transmission=am),mean))
 
@@ -201,7 +207,9 @@ rowsum(iris[-5], iris$Species)
 
 
 #번주별 관측값 개수(범주별 개수가 몇개 있는지)
+car$gear
 gc<-tabulate(car$gear)
+
 names(gc)<-1:length(tabulate(car$gear))
 gc
 
@@ -226,6 +234,7 @@ with(car, aggregate(mpg,list(cyl,am),mean))
 #dplyr:분할(s)-적용(A)-결합(c)작업을 수월하게 할 수 있도록 도움을 주는 라이브러리 
 
 #filter 조건을 만족하는 행 추출
+head(airquality)
 air<-filter(airquality,Month==6)
 head(air)
 

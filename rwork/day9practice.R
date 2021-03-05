@@ -18,14 +18,17 @@ table(titanic[,c('Pclass','Survived')])
 head(titanic[,c('Pclass','Survived')])
 #or
 with(titanic,tapply(Survived,list(Pclass),mean))
+with(titanic,tapply(Survived==0,list(Pclass),mean))
 
 # 3. Age 열
 # - 나이대를 구분한 후, 각 나이대별 생존율
+
 titanic$ages<-cut(titanic$Age,
                   breaks = c(0,10,20,30,40,50,max(titanic$Age)+1),
                   right=FALSE,
                   labels=c('10s','20s','30s','40s','50s')
                   )
+titanic$ages
 
 proportions(table(titanic[,c('ages','Survived')]),1)
 #or
@@ -40,11 +43,14 @@ titanic$fares<-cut(titanic$Fare,
 
 proportions(table(titanic[,c('fares','Survived')]),1)
 
+with(titanic,tapply(Survived,list(fares),mean))
+with(titanic,tapply(Survived==0,list(fares),mean))
+
 # 5. Name 열 
 # - 호칭을 제외한 이름에서 자음과 모음의 비율
 # - 성별에 따른 자음과 모음의 비율
 #자음/모음 -> consonant.vowel.ratio
-titanic$Name
+head(titanic$Name,20)
 for (i in 1:nrow(titanic)){
   titanic$realname[i] <- gsub('\\s{1}.{2,}[.]',replacement = '',titanic$Name[i])
   lst<-unlist(strsplit(titanic$realname[i],split=''))
@@ -76,6 +82,7 @@ with(titanic,tapply(consonant.vowel.ratio,list(Sex),mean))
 
 
 #자음/전체, 모음/전체
+aggregate(titanic[c('consonant.ratio','vowel.ratio')],list(titanic$Sex),mean)
 aggregate(titanic[c('consonant.ratio','vowel.ratio')],list(sex=titanic$Sex),mean)
 
 # 6. Embarked 열
