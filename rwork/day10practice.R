@@ -1,67 +1,3 @@
-train <- read.csv('train.csv',na.strings = '')
-test <- read.csv('test.csv',na.strings = '')
-
-train
-summary(train)
-
-train$Predictions<-ifelse(train$Sex=='male',0,1)
-head(train)
-
-#train 정확도
-sum(train$Survived==train$Predictions) #701
-sum(train$Survived==train$Predictions)/nrow(train) # 0.7867565
-
-#test 적용
-test$Survived<-ifelse(test$Sex=='male',0,1)
-
-submissions<-test[,c("PassengerId","Survived")]
-submissions
-write.csv(submissions,file='submissions.csv',row.names = F)
-
-
-
-#유클리드 거
-train$Embarked
-
-# 1. chr 변수를 num으로 변경
-# 
-# Name(Capt., ...), Sex(male, female), Embarked(C,Q,S)의 라벨을 1~라벨개수까지 숫자로 지정하여 numeric형으로 변환
-# 
-# (ex. C=1, Q=2, S=3)
-# 
-# 
-# 2. NA 대체
-# 
-# 1) train$Embarked: 
-#   
-#   - Ticket 번호 유사한 애들 뽑아서 가장 빈도수 높은 라벨 값으로 대체
-# 
-# 2) train$Age, test$Age, test$Fare:
-#   
-#   - cor 함수 결과(상관분석)에서 소수점 둘째 자리에서 반올림했을 때, 
-# 
-# 절대값이 0.3 이상인 변수를 뽑아서 타겟과의 유클리드 거리 구함
-# 
-# - 유클리드 거리 가까운 상위 5개/10개를 뽑아 평균낸 것으로 NA 대체
-
-# 3. Survived 예측 모델
-# 
-# - train과 test를 각각 정규화 (←train과 test 데이터를 합쳐서 정규화 해도 되는지 궁금합니다)
-# 
-# - test의 데이터 x와 train 데이터들과의 유클리드 거리 연산 & 거리 가까운 상위 11개 인덱스 추출
-# 
-# - train의 해당 인덱스 Survived를 뽑아서 0과 1 중 빈도수 높은 것으로 x의 Survived 결정 
-# 
-# (ex. train$Survived[인덱스] 0: 4, 1: 7 → test$Survived[x]<-1)
-
-# 4. 제출결과 (🙂😂)
-# 
-# 가장 높은 정확도: 0.77511 (c.f. 성별만 넣은 모델 정확도: 0.76555....) 
-# 
-# feature: Pclass, SibSp, Parch, sex.int 
-# 
-# (NA 대체한 변수가 하나도 안 들어갔을 때 정확도가 가장 높았음....)
-
 
 train <- read.csv('train.csv', na.strings = "")
 test <- read.csv('test.csv', na.strings = "")
@@ -91,13 +27,14 @@ emb.int <- toNum(train[,'Embarked']) # C=1, Q=2, S =3
 #### 숫자로 변환한 factor 원데이터에 추가 ####
 train <- cbind(train, name.int, sex.int, emb.int)
 
+head(train)
+
 #### Embarked NA 채우기 ####
 # Ticket 번호 유사한 애들과 비교
 which(is.na(train$Embarked)) # 62 830
 train$Ticket[c(62,830)] # "113572" "113572"
 grep('1135[\\d]*', train$Ticket, value=T) # "113509" "113572" "113505" "113514" "113510" "113505" "113503" "113501" "113572"
 names(which.max(table(train$emb.int[grep('1135[\\d]*', train$Ticket)]))) # 3
-
 
 grep('113[\\d]*', train$Ticket, value=T)
 names(which.max(table(train$emb.int[grep('113[\\d]*', train$Ticket)]))) # 3
@@ -106,12 +43,14 @@ train$emb.int[c(62,830)] <- '3'
 
 #### num형태의 데이터 값을 표준화한 데이터프레임 'scaled' 만들기 ####
 df <- data.frame(sapply(train[,c('Pclass', 'SibSp', 'Parch', 'Fare', 'name.int', 'sex.int', 'emb.int')], as.numeric))
+df
 tr.scaled <- as.data.frame(sapply(df, scale))
 tr.scaled <- cbind(Id=train$PassengerId, tr.scaled, Age=train$Age)
-
+head(tr.scaled)
 
 #### 유클리드 거리로 NA 채우기 ####
 #### Age ####
+#NA인 개수
 target <- which(is.na(tr.scaled$Age)) # index (length: 177)
 
 # cor 소수점 둘째 자리에서 반올림했을 때 0.3 이상인 것 --> Age.na1: Pclass, SibSp, name.int
@@ -147,8 +86,9 @@ age.lvl <- cut(train$Age.na1_10,
                breaks = c(0,10,20,30,40,50,80),
                labels = c(1:6)
 )
-tr.scaled$age.lvl_10 <- as.vector(scale(as.numeric(age.lvl)))
 
+tr.scaled$age.lvl_10 <- as.vector(scale(as.numeric(age.lvl)))
+tr.scaled$age.lvl_10
 
 #### 유클리드 거리 모델 train에 테스트 ####
 pred <- data.frame(pred1=c(1:nrow(train)))
@@ -167,6 +107,7 @@ for (i in 1:nrow(tr.scaled)) {
   print(i)
 }
 
+
 # order(euc.dist)[1:11]
 sum(train$Survived==pred$pred1)/nrow(train) # 0.8338945 [,c(2:8,10)] 
 sum(train$Survived==pred$pred2)/nrow(train) # 0.8350168 [,c(2:5,7,8,10)]
@@ -178,7 +119,6 @@ sum(train$Survived==pred$pred6)/nrow(train) # 0.8327722 [,c(2:5,7,13)]
 sum(train$Survived==pred$pred7)/nrow(train) # 0.8507295 [,c(2:5,7,8,13)]
 # order(euc.dist)[1:21]
 sum(train$Survived==pred$pred8)/nrow(train) # 0.8215488 [,c(2:5,7,8,13)]
-
 
 
 
@@ -329,6 +269,7 @@ write.csv(res, './titanic/res1.csv', row.names=F)
 
 
 ##############다른 분 풀이
+
 train<-read.csv('train.csv',na.strings = '')
 test<-read.csv('test.csv',na.strings='')
 str(train)
