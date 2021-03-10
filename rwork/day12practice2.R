@@ -64,7 +64,7 @@ train$Sex<- ifelse(train$Sex=='male',0,1)
 train
 
 #Embarked
-sum(is.na(train$Embarked)) # 2
+sum(is.na(train$Embarked)) # 2 결측값
 y<-table(train$Embarked)
 train[is.na(train$Embarked),]$Embarked <-names(y)[which(y==max(y))]
 
@@ -92,12 +92,16 @@ cor(scaled[-age.naidx,],train[-age.naidx,]$Age)
 # Embarked  0.01017065
 # Sex      -0.09325358
 
+
+head(scaled[,c('Pclass','SibSp','Parch')]-scaled[i,c('Pclass','SibSp','Parch')])
+head(t(scaled[,c('Pclass','SibSp','Parch')])-scaled[i,c('Pclass','SibSp','Parch')])
 #Age결측값 대체
 for (i in age.naidx){
   eu.dis<-sqrt(colSums((t(scaled[,c('Pclass','SibSp','Parch')])-scaled[i,c('Pclass','SibSp','Parch')])^2))
   top10.idx<-order(eu.dis)[1:10]
   train$Age[i]<-mean(train[top10.idx,'Age'],na.rm=T)
 }
+
 
 sum(is.na(train$Age))
 
@@ -151,6 +155,11 @@ test$Pclass<-sapply(test[,'Pclass'], as.numeric)
 
 ###Fare, Pclass상관관계가 높고, Fare 범위가 넓기때문에 Pclass==1의 중앙값으로 대체
 cor(test[!(is.na(test$Fare)),'Pclass'],test[!(is.na(test$Fare)),]$Fare) #-0.5771473
+#or
+cor(test[!(is.na(test$Fare)),'Pclass'],test[!(is.na(test$Fare)),'Fare']) #-0.5771473
+
+
+
 
 which(is.na(test$Fare))# 153
 test[153,'Pclass'] #3
@@ -437,8 +446,7 @@ test_n<-as.data.frame(lapply(test_num,normalize))
 titanic_train_labels <-train[,'Survived']
 
 
-titanic_test_pred<-knn(train=train_n,test=test_n,
-                       cl=titanic_train_labels,k=5)
+titanic_test_pred<-knn(train=train_n,test=test_n,cl=titanic_train_labels,k=5)
 
 titanic_test_pred#예측
 
