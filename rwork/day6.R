@@ -39,7 +39,7 @@ grep("ch(a*|e*)se",words,value=TRUE)
 
 grep("^c",words,value=TRUE)
 grep("t$",words,value=TRUE)
-
+ 
 #.(마침표):모든 문자
 #.*:모든 문자가 0개 이상
 
