@@ -50,16 +50,15 @@ N_na<-nrow(mush[is.na(mush[,'stalk-shape']),-idx])
 N_na
 #na가 아닌 개수
 target<-t(mush[!is.na(mush[,'stalk-shape']),-idx])
-target
-
 
 Na_predict<-c()
 for(i in 1:N_na){
-  na_sample<-unlist(mush[is.na(mush[,'stalk-shape']),-idx][i,,drop=T])
-  ans<-target==na_sample
+  na_sample<<-unlist(mush[is.na(mush[,'stalk-shape']),-idx][i,,drop=T]) #nx를 제외한 열에 대해 na행을 검사
+  ans<<-target==na_sample
   similar_idx<-as.numeric(sort(colSums(ans),decreasing = T)[1:5])
   Na_predict<-c(Na_predict,names(sort(table(mush[similar_idx,idx]),decreasing = T))[1])
 }
+
 mush[is.na(mush[,'stalk-shape']),idx]<-Na_predict
 sum(!complete.cases(mush))
 
@@ -68,6 +67,7 @@ sum(!complete.cases(mush))
 #종류가 2개 이상이고 순서가 없다면 onehotencoding실시
 
 str(mush)
+
 features<-colnames(mush)[-1]
 for(feature in features){
   iter<-unique(mush[[feature]])
