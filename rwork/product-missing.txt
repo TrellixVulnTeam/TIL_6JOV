@@ -1,4 +1,0 @@
-id name price
-A001 Mouse 30000
-A002 Keyboard 누락
-A003 몰라 50000

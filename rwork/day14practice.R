@@ -58,3 +58,160 @@ mpg %>%
 
 # 3. kmeans를 이용하여 iris 데이터를 3개 그룹으로 나누어보세요
 
+data(iris)
+
+iris.x<-iris[1:4]
+iris.x<-as.data.frame(lapply(iris.x,scale))
+iris.x
+
+set.seed(1234)
+iris_clusters<-kmeans(iris.x,3) # 군집화
+iris_clusters
+
+#실제 값과 비교하기
+iris_labels <-iris[5]
+
+#<개수 비교>
+
+table(iris_labels)
+# setosa versicolor  virginica 
+# 50         50         50
+
+iris_clusters$size
+# 50 53 47
+
+#<정확도 비교>
+iris_labels_1 <-ifelse(iris_labels=='setosa',1,ifelse(iris_labels=='versicolor',2,3))
+sum(iris_clusters$cluster==iris_labels_1)/length(iris_labels_1) # 0.8333333
+
+
+#4. snsdata의 결측값을 적절하게 대체하여 kmeans를 적용해보세요
+
+#1. 데이터 확인
+snsdata<-read.csv('snsdata.csv')
+
+summary(snsdata)
+library(Amelia)
+missmap(snsdata[1:4],col = c('red','grey')) # age,gender NA 존재
+
+sum(is.na(snsdata$age)) #5086
+sum(is.na(snsdata$gender)) #2724
+aggregate(data=teens,age~gradyear,mean,na.ra=T)
+
+#나이 이상치 제거 & 결측값 채우기 (gradyear 이용)
+sns.box<-boxplot(teens$age)
+sns.box
+# $stats
+# [1,] 13.396
+# [2,] 16.312
+# [3,] 17.287
+# [4,] 18.259
+# [5,] 21.158
+
+# 13.396 미만 , 21.158 초과하는 데이터 NA로 바꾸기
+snsdata$age<-ifelse(snsdata$age>=13.396 & teens$age<21.158, teens$age,NA)
+
+
+ave_age<-ave(snsdata$age,snsdata$gradyear,FUN=function(x) median(x,na.rm=T))
+snsdata$age<-ifelse(is.na(snsdata$age),ave_age,snsdata$age) 
+
+sum(is.na(snsdata$age)) #0
+
+
+
+#성별 결측값 채우기 (유클리디안 거리 이용)
+
+
+sum(is.na(snsdata$gender)) #2724
+table(snsdata$gender)
+
+#    F     M 
+# 22054  5222 
+
+colnames(snsdata)
+
+snsdata$gender <-ifelse(snsdata$gender=='M',0,ifelse(snsdata$gender=='F',1,NA))
+sns.scale<-as.data.frame(lapply(snsdata[,c(1,3,4)],scale))
+sns.scale
+
+
+na.index<- which(is.na(snsdata$gender))
+na.index
+
+for (i in na.index){
+  e.dis<-sqrt(rowSums((t(t(sns.scale)-as.numeric(sns.scale[i,])))^2))
+  top10.index<-order(e.dis)[1:10]
+  snsdata$gender[i]<-round(mean(snsdata[top10.index,'gender'],na.rm=T))
+}
+
+#gender 결측값 처리 후 결과
+sum(is.na(snsdata$gender))
+table(snsdata$gender)
+# 0     1 
+# 5488 24512 
+
+#female, male 컬럼 생성
+library(dplyr)
+snsdata<-snsdata %>% 
+  mutate(female=ifelse(gender==1,1,0)) %>% 
+  mutate(male=ifelse(gender==0,1,0))
+
+
+#k-means clustering
+interests<-snsdata[5:ncol(snsdata)]
+interests_z<-as.data.frame(lapply(interests,scale))
+
+#k 설정
+
+#Elbow Method
+sqrt(nrow(snsdata)/2) #122.4745
+
+
+tot.withinss <-c()
+betweens<-c()
+
+for (i in seq(1,120)){
+  tot.withinss[i]<-kmeans(interests_z,i)$tot.withinss
+  betweens[i]<-kmeans(interests_z,i)$betweens
+}
+
+#withinss
+plot(1:120, tot.withinss, type="b",xlab='k 개수')
+
+#bewteens
+plot(1:120, betweens, type="b",xlab='k 개수')
+
+
+#실행 결과 그래프에서 elbow point를 파악하기 어려움 -> k 범위 줄이기
+
+tw<-0
+bt<-0
+for (i in seq(1,25)){
+  tw[i]<-kmeans(interests_z,i)$tot.withinss
+  bt[i]<-kmeans(interests_z,i)$betweens
+}
+
+bt
+tw
+
+plot(1:25, tw, type="b",xlab='k 개수')
+#plot(1:25, bt, type="b",xlab='k 개수')
+
+
+#withinss값을 그래프로 그리기, 기울기가 완만해지는 3~4가 Elbow point라는 것을 알수 있다
+# withinss 값으로 그래프를 그렸을때, 기울기가 완만해지는 구간 ->  k 개수:13~14, 또는 22~23
+#(하지만 elbow point라고 봐도 되는지 잘 모르겠습니다)
+
+
+# 범위 1~10
+tw<-0
+bt<-0
+for (i in seq(1,10)){
+  tw[i]<-kmeans(interests_z,i)$tot.withinss
+  bt[i]<-kmeans(interests_z,i)$betweens
+}
+
+plot(1:10, tw, type="b",xlab='k 개수')
+
+#범위를 10으로 줄였을때, 8-9 기울기가 가장 완만함 -> k=8~9
+
