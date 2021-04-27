@@ -11,7 +11,7 @@
 
 ### 1-1. 생성
 
-`use 데이터베이스명` 으로 생성한다. 이미 있는 경우엔 현존하는 데이터베이스를 사용한다. 1개 이상의 Collection이 있어야 데이터베이스 리스트에서 보인다.
+`use 데이터베이스명` 으로 생성
 
 ### 1-2. 조회
 
@@ -29,11 +29,11 @@
 
 ### 2-1. 생성
 
-`db.createCollection(name, [options])` 으로 컬렉션을 생성한다. name은 컬렉션이름이고, options은 document 타입으로 구성된 해당 컬렉션의 설정값이다.
+`db.createCollection(name, [options])` 으로 컬렉션을 생성 name->컬렉션이름, options->구성된 해당 컬렉션의 설정값
 
-options 객체의 속성들은 아래와 같다.
+options 객체의 속성들
 
-- capped : Boolean타입이다. 이 값을 true로 설정하면 capped collection을 활성화 시킨다. Capped collection 이란 고정된 크기(fixed size)를 가진 컬렉션으로서, size가 초과되면 가장 오래된 데이터를 덮어쓴다. 이 값을 true로 설정하면 size 값을 꼭 설정해야 한다.
+- capped : Boolean타입. 이 값을 true로 설정하면 capped collection을 활성화 시킨다. Capped collection 이란 고정된 크기(fixed size)를 가진 컬렉션으로서, size가 초과되면 가장 오래된 데이터를 덮어쓴다. 이 값을 true로 설정하면 size 값을 꼭 설정해야 한다.
 - autoIndex : Boolean타입이다. 이 값을 true로 설정하면, `_id` 필드에 index를 자동으로 생성한다. 기본값은 false이다. 곧 deprecated 될 예정이므로 쓰지 말자.
 - size : number타입이다. Capped collection을 위해 해당 컬렉션의 최대 사이즈를 ~bytes로 지정한다.
 - max : number타입이다. 해당 컬렉션에 추가 할 수 있는 최대 document 갯수를 설정한다.
@@ -51,11 +51,11 @@ options 객체의 속성들은 아래와 같다.
 
 ### 2-2. 조회
 
-`show collections` 으로 컬렉션 리스트를 확인할 수 있다.
+`show collections` 으로 컬렉션 리스트를 확인
 
 ### 2-3. 제거
 
-`db.컬렉션명.drop()` 으로 컬렉션을 제거한다.
+`db.컬렉션명.drop()` 으로 컬렉션을 제거
 
 ### 2-4. 유틸
 
@@ -65,11 +65,10 @@ options 객체의 속성들은 아래와 같다.
 
 ## 3. document
 
-어떤 따옴표를 쓰던, 생략하던 데이터베이스에는 큰따옴표로 보이는 듯하다.
 
 ### 3-1. 생성
 
-`db.컬렉션명.insert(document)` 로 document를 추가한다. 배열형식으로 전달하면 여러 document를 bulk형식으로 추가할 수 있다.
+`db.컬렉션명.insert(document)` 로 document를 추가
 
 ```
 > db.books.insert([
@@ -90,21 +89,21 @@ BulkWriteResult({
 
 ### 3-2. 조회
 
-- `db.컬렉션명.find([query, projection])` 로 컬렉션의 document 리스트를 확인할 수 있다.
-- 한 줄이 너무 길어 불편할 때는 끝에 .pretty()를 붙이면 json이 이쁘게 나온다.
+- `db.컬렉션명.find([query, projection])` 로 컬렉션의 document 리스트를 확인
+- 한 줄이 너무 길어 불편할 때는 끝에 .pretty()
 
-매개변수로 아래와 같은 것이 들어갈 수 있다.
+매개변수
 
 - query : document타입이다. Optional이며, document를 조회할 때 기준을 정한다. 기준이 없이 컬렉션에 있는 모든 document를 조회할때는 이 매개변수를 비우거나, { } 를 전달하면 된다. 연산자는 4번을 참고하자.
 - projection : document타입이다. Optional이며, document를 조회할 때 보여질 field를 정한다. (ex. `> db.articles.find( { } , { “_id”: false, “title”: true, “content”: true } )`)
 
-find() 는 기준값에 해당하는 document들을 선택하여 cursor를 반환한다. cursor는 query 요청의 결과를 가르키는 포인터다. cursor 객체를 통해서 보이는 데이터의 수를 제한할 수도 있고 데이터를 정렬할 수도 있다. 이 포인터는 10분동안 사용되지않으면 소멸된다. cursor 객체는 5번을 참고하자
+find() 는 기준값에 해당하는 document들을 선택하여 cursor를 반환
 
 ### 3-3. 제거
 
 `db.컬렉션명.remove(criteria[, justOne])` 로 document를 제거할 수 있다.
 
-매개변수로 들어가는 객체의 속성들은 아래와 같다.
+매개변수:
 
 - criteria : document 타입이다. 데이터의 기준 값으로서 일치하면 기본적으로 다 삭제한다. 이 값이 { } 이면 컬렉션의 모든 데이터를 제거한다. 꼭 넣어야한다.
 - justOne boolean타입이다. Optional 매개변수이며, 이 값이 true면 1개의 document만 제거한다. 이 매개변수가 생략되면 기본값은 false이고 criteria에 해당되는 모든 document를 제거한다.
